@@ -18,4 +18,9 @@ public interface FoodService {
     public Food findById(Integer contactId);
 
     public List<Food> getFoodList();
+
+    public Food getFoodById(Integer foodId);
+
+    public void setFoodById(Integer foodId, Integer userId);
+
 }

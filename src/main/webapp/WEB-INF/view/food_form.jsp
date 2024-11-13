@@ -19,7 +19,9 @@
         <jsp:include page="include/menu.jsp"/>
 
         <h3>You can add below food items to your meal .....</h3>
-
+        <c:if test="${param.ac eq 'sv'}">
+            <p class="success">Food Added Successfully</p>
+        </c:if>
         <table border=1>
             <tr>
                 <th>
@@ -42,11 +44,11 @@
                 </td>
 
                 <td>
-                    <a href="/getFoodById">View</a>
+                    <a href="<c:url value="/getFoodById?foodId=${f.foodId}"/>">View</a>
                 </td>
 
                 <td>
-                    <button>Add to Meal</button>
+                    <a href="<c:url value="/setFoodById?foodId=${f.foodId}"/>">Add to Meal</a>
                 </td>
             </tr>
             </c:forEach>

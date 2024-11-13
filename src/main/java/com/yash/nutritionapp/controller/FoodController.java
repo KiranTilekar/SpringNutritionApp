@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -69,9 +70,7 @@ public class FoodController {
     @RequestMapping(value="/seeMeal")
     public String userMealList(Model m, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
-        System.out.println("User id while seeing user meal:"+userId);
         m.addAttribute("mealList", foodService.findUserMeal(userId));
-        System.out.println("User id while seeing user meal:"+userId);
         return "userMeal";
     }
 
@@ -93,5 +92,26 @@ public class FoodController {
         m.addAttribute("contactList", foodService.findUserContact(userId, freeText));
         return "clist"; //JSP
     }
+
+    @RequestMapping(value="/getFoodById")
+    public String getFoodById(Model m, @RequestParam("foodId") Integer foodId) {
+        m.addAttribute("foodById", foodService.getFoodById(foodId));
+        return "foodDetails";
+    }
+
+    @RequestMapping(value="/setFoodById")
+    public String setFoodById(@RequestParam("foodId") Integer foodId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        System.out.println("foodID:"+foodId);
+        System.out.println("userId:"+userId);
+        foodService.setFoodById(foodId,userId);
+        return "redirect:makeYourMeal?ac=sv";
+//        return "demo";
+    }
+
+//    @RequestMapping(value="/seeMealRedirect")
+//    public String getFoodById() {
+//        return "food_form";
+//    }
 
 }

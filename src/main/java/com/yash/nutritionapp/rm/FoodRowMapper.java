@@ -16,7 +16,7 @@ public class FoodRowMapper implements RowMapper<Food> {
         f.setFoodId(rs.getInt("foodId"));
         f.setName(rs.getString("name"));
         f.setCarbohydrate(rs.getString("carbohydrate"));
-        f.setProtien(rs.getString("protein"));
+        f.setProtein(rs.getString("protein"));
         f.setFat(rs.getString("fat"));
         f.setIron(rs.getString("iron"));
         f.setMagnesium(rs.getString("magnesium"));

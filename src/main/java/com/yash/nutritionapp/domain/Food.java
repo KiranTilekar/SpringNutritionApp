@@ -6,7 +6,7 @@ public class Food {
     private Integer userId;
     private String name;
     private String carbohydrate;
-    private String protien;
+    private String protein;
     private String fat;
     private String iron;
     private String magnesium;
@@ -48,12 +48,12 @@ public class Food {
         this.carbohydrate = carbohydrate;
     }
 
-    public String getProtien() {
-        return protien;
+    public String getProtein() {
+        return protein;
     }
 
-    public void setProtien(String protien) {
-        this.protien = protien;
+    public void setProtein(String protein) {
+        this.protein = protein;
     }
 
     public String getFat() {
@@ -95,7 +95,7 @@ public class Food {
                 ", userId=" + userId +
                 ", name='" + name + '\'' +
                 ", carbohydrate='" + carbohydrate + '\'' +
-                ", protien='" + protien + '\'' +
+                ", protein='" + protein + '\'' +
                 ", fat='" + fat + '\'' +
                 ", iron='" + iron + '\'' +
                 ", magnesium='" + magnesium + '\'' +

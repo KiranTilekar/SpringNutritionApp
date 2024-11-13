@@ -4,13 +4,21 @@ import com.yash.nutritionapp.dao.BaseDAO;
 import com.yash.nutritionapp.dao.FoodDAO;
 import com.yash.nutritionapp.domain.Food;
 import com.yash.nutritionapp.domain.Meal;
+import com.yash.nutritionapp.domain.User;
 import com.yash.nutritionapp.rm.FoodRowMapper;
+import com.yash.nutritionapp.rm.UserRowMapper;
 import com.yash.nutritionapp.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FoodServiceImpl extends BaseDAO implements FoodService {
@@ -62,6 +70,29 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
     public List<Food> getFoodList() {
         String sql = "select * from food";
         return getJdbcTemplate().query(sql, new FoodRowMapper());
+    }
+
+    @Override
+    public Food getFoodById(Integer foodId) {
+        String sql = "select * from food where foodId=?";
+        Food f = getJdbcTemplate().queryForObject(sql, new FoodRowMapper(), foodId);
+        return f;
+    }
+
+    @Override
+    public void setFoodById(Integer foodId, Integer userId) {
+        System.out.println("inside saving food in user's meal");
+        String sql = "insert into userMeal (userId, foodId) VALUES (:userId, :foodId)";
+
+        Map m = new HashMap();
+        m.put("userId", userId);
+        m.put("foodId", foodId);
+
+        KeyHolder kh = new GeneratedKeyHolder(); // bind auto-incremented value
+        SqlParameterSource ps = new MapSqlParameterSource(m);
+        super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
+        Integer mealId = kh.getKey().intValue();
+
     }
 
 

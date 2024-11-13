@@ -55,7 +55,6 @@ public class FoodDAOImpl extends BaseDAO implements FoodDAO {
 
     @Override
     public void delete(Integer foodId) {
-        System.out.println("food id while deleting:"+foodId);
         String sql = "DELETE FROM userMeal WHERE foodId=?";
         getJdbcTemplate().update(sql, foodId);
         System.out.println("meal deleted");
