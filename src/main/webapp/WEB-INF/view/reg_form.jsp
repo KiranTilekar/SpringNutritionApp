@@ -14,104 +14,168 @@
 
     <script>
         $(document).ready(function (){
-            $("#id_check_avail").click(function(){
+            $("#checkAvailability").click(function(){
                 $.ajax({
                     url : 'check_avail',
-                    data : { username: $("#id_username").val()} ,
+                    data : { username: $("#username").val()} ,
                     success : function(data){
-                        $("#id_res_div").html(data);
+                        $("#availabilityResult").html(data);
                     }
                 });
             });
         });
     </script>
 
+    <style>
+        .register-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #checkAvailability {
+            background-color: #007bff;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        #checkAvailability:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 5px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .register-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .register-button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message, .success-message {
+            font-size: 14px;
+            color: red;
+            padding: 5px;
+            border-radius: 4px;
+            background-color: #f8d7da;
+            margin-bottom: 15px;
+        }
+
+    </style>
 </head>
-<table border="1" width="80%" align="center">
-    <tr>
-        <td height="80px">
+<body>
             <%-- Header --%>
                 <jsp:include page="include/header.jsp" />
-        </td>
-    </tr>
-    <tr>
-        <td height="25px">
+
             <%-- Menu --%>
                 <jsp:include page="include/menu.jsp" />
-        </td>
-    </tr>
-    <tr>
-        <td height="350px" valign="top">
+
             <%-- Page Content Area--%>
-                <h3>User Registration</h3>
-                <c:if test="${err!=null}">
-                    <p class="error">${err}</p>
-                </c:if>
-                <c:if test="${param.act eq 'reg'}">
-                    <p class="success">User Registered Successfully. Please login</p>
-                </c:if>
-                <f:form action="register" modelAttribute="command">
-                    <table border="1">
-                        <tr>
-                            <td>Name</td>
-                            <td>
-                                <f:input path="user.name" />
-                            </td>
-                        </tr>
+               <div class="register-container">
+                   <h2>Create Your Account</h2>
 
-                        <tr>
-                            <td>Email</td>
-                            <td>
-                                <f:input path="user.email" />
-                            </td>
-                        </tr>
+                   <c:if test="${param.act eq 're'}">
+                       <div class="success-message">Registration Successful! Please check your email for verification.</div>
+                   </c:if>
 
-                        <tr>
-                            <td>Password</td>
-                            <td>
-                                <f:password path="user.password" />
-                            </td>
-                        </tr>
+                   <div class="register-container">
 
-                        <tr>
-                            <td>Username</td>
-                            <td>
-                                <f:input id="id_username" path="user.loginName" />
-                                <button type="button" id="id_check_avail">Check Availability</button>
-                                <div id="id_res_div" class="error"></div>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td>Height (in m)</td>
-                            <td>
-                                <f:input path="user.height" />
-                            </td>
-                        </tr>
+                       <c:if test="${err!=null}">
+                           <div class="error-message">${err}</div>
+                       </c:if>
 
-                        <tr>
-                            <td>Weight (in kg)</td>
-                            <td>
-                                <f:input path="user.weight" />
-                            </td>
-                        </tr>
+                       <c:if test="${param.act eq 're'}">
+                           <div class="success-message">Registration Successful! Please check your email for verification.</div>
+                       </c:if>
 
-                        <tr>
-                            <td colspan="2" align="right">
-                                <button>Submit</button> <br />
-                            </td>
-                        </tr>
-                    </table>
-                </f:form>
-        </td>
-    </tr>
-    <tr>
-        <td height="25px">
+                       <f:form action="register" modelAttribute="command" method="POST" cssClass="registrationForm">
+                           <div class="form-group">
+                               <label for="name">Full Name</label>
+                               <f:input path="user.name" id="name" cssClass="form-control" />
+                           </div>
+
+                           <div class="form-group">
+                               <label for="email">Email Address</label>
+                               <f:input path="user.email" id="email" cssClass="form-control" type="email" />
+                           </div>
+
+                           <div class="form-group">
+                               <label for="password">Create Password</label>
+                               <f:password path="user.password" id="password" cssClass="form-control" />
+                           </div>
+
+                           <div class="form-group">
+                               <label for="username">Choose Username</label>
+                               <f:input path="user.loginName" id="username" cssClass="form-control" />
+                               <button type="button" id="checkAvailability">Check Availability</button>
+                               <div id="availabilityResult" class="result"></div>
+                           </div>
+
+                           <div class="form-group">
+                               <label for="height">Height (in meters)</label>
+                               <f:input path="user.height" id="height" cssClass="form-control" type="number" step="0.01" min="0" />
+                           </div>
+
+                           <div class="form-group">
+                               <label for="weight">Weight (in kilograms)</label>
+                               <f:input path="user.weight" id="weight" cssClass="form-control" type="number" step="0.01" min="0" />
+                           </div>
+
+                           <button type="submit" class="register-button">Register</button>
+                       </f:form>
+                   </div>
+
+               </div>
+
             <%-- Footer --%>
                 <jsp:include page="include/footer.jsp" />
-        </td>
-    </tr>
-</table>
+
 </body>
 
 </html>

@@ -6,45 +6,72 @@
         <title>Admin Dashboard - Contact Application </title>
         <link href="static/css/style.css" rel="stylesheet" type="text/css"/>
         <style>
-            body{
-                font-family: Arial, Helvetica, Geneva, sans-serif;
-                font-size: 18px;
+            body {
+                text-align:center;
             }
-            .error{
-                color: #FF0000;
+            .main-container {
+                width: 90%;
+                margin: 0 auto;
+                padding: 20px;
             }
-            .success{
-                color: #0000FF;
+
+            .layout-table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 10px;
+            }
+
+            .header-cell,
+            .menu-cell,
+            .content-cell,
+            .footer-cell {
+                display: block;
+            }
+
+            .admin-dashboard {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .admin-dashboard h3 {
+                color: #333;
+                margin-top: 0;
             }
         </style>
     </head>
     <body>
-        <table border="1" width="80%" align="center">
-            <tr>
-                <td height="80px">
-                    <%-- Header --%>
-                    <jsp:include page = "include/header.jsp"/>
-                </td>
-            </tr>
-            <tr>
-                <td height="25px">
-                    <%-- Menu --%>
-                    <jsp:include page = "include/menu.jsp"/>
-                </td>
-            </tr>
-            <tr>
-                <td height="350px" valign="top">
-                    <%-- Page Content Area--%>
-                    <h3>Admin Dashboard</h3>
-                    TODO- Admin options in this page
-                </td>
-            </tr>
-            <tr>
-                <td height="25px">
-                    <%-- Footer --%>
-                    <jsp:include page = "include/footer.jsp"/>
-                </td>
-            </tr>
-        </table>
+        <div class="main-container">
+            <table class="layout-table">
+                <tr>
+                    <td class="header-cell">
+                        <%-- Header --%>
+                        <jsp:include page="include/header.jsp"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="menu-cell">
+                        <%-- Menu --%>
+                        <jsp:include page="include/menu.jsp"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="content-cell">
+                        <%-- Page Content Area--%>
+                        <div class="admin-dashboard">
+                            <h3>Admin Dashboard</h3>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="footer-cell">
+                        <%-- Footer --%>
+                        <jsp:include page="include/footer.jsp"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>

@@ -4,47 +4,43 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Dashboard - Contact Application </title>
-        <link href="static/css/style.css" rel="stylesheet" type="text/css"/>
         <style>
-            body{
-                font-family: Arial, Helvetica, Geneva, sans-serif;
-                font-size: 18px;
+            body {
+                text-align: center;
             }
-            .error{
-                color: #FF0000;
+            .page-content {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 5px;
             }
-            .success{
-                color: #0000FF;
+
+            .page-content h3 {
+                color: #333;
+                margin-top: 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .page-content p {
+                line-height: 1.6;
+                margin-bottom: 15px;
+                color: #666;
             }
         </style>
     </head>
     <body>
-        <table border="1" width="80%" align="center">
-            <tr>
-                <td height="80px">
                     <%-- Header --%>
                     <jsp:include page = "include/header.jsp"/>
-                </td>
-            </tr>
-            <tr>
-                <td height="25px">
+
                     <%-- Menu --%>
                     <jsp:include page = "include/menu.jsp"/>
-                </td>
-            </tr>
-            <tr>
-                <td height="350px" valign="top">
-                    <%-- Page Content Area--%>
-                    <h3>User Dashboard</h3>
-                    TODO- User options in this page
-                </td>
-            </tr>
-            <tr>
-                <td height="25px">
+
+                   <%-- Page Content Area--%>
+                   <div class="page-content">
+                       <h3>User Dashboard</h3>
+
+                   </div>
                     <%-- Footer --%>
                     <jsp:include page = "include/footer.jsp"/>
-                </td>
-            </tr>
-        </table>
     </body>
 </html>
