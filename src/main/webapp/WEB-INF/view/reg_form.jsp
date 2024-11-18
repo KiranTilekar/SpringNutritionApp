@@ -24,6 +24,32 @@
                 });
             });
         });
+
+        function validateName() {
+            const name = document.getElementById("name").value;
+
+            if (/\d/.test(name)) {
+                document.getElementById("name-validation").innerHTML = "Username do not contain digit";
+            }
+            else if (name.length > 20) {
+                document.getElementById("name-validation").innerHTML = "Please enter username with maximum 20 characters";
+            }
+            else {
+                document.getElementById("name-validation").innerHTML = "";
+            }
+        }
+
+        function validateEmail () {
+            const email = document.getElementById("email").value;
+            const splitedEmail = email.split("@");
+
+            if (splitedEmail[1] != "yash.com") {
+                document.getElementById("email-validation").innerHTML = "Invalid email (ex.yourname@yash.com)";
+            }
+            else {
+                document.getElementById("email-validation").innerHTML = "";
+            }
+        }
     </script>
 
     <style>
@@ -109,8 +135,6 @@
     </style>
 </head>
 <body>
-            <%-- Header --%>
-                <jsp:include page="include/header.jsp" />
 
             <%-- Menu --%>
                 <jsp:include page="include/menu.jsp" />
@@ -137,34 +161,36 @@
                        <f:form action="register" modelAttribute="command" method="POST" cssClass="registrationForm">
                            <div class="form-group">
                                <label for="name">Full Name</label>
-                               <f:input path="user.name" id="name" cssClass="form-control" />
+                               <f:input path="user.name" id="name" cssClass="form-control" onInput="validateName()" required="required"/>
+                               <div id="name-validation" style="color:red;"></div>
                            </div>
 
                            <div class="form-group">
                                <label for="email">Email Address</label>
-                               <f:input path="user.email" id="email" cssClass="form-control" type="email" />
+                               <f:input path="user.email" id="email" cssClass="form-control" type="email" onInput="validateEmail()" required="required"/>
+                               <div id="email-validation" style="color:red;"></div>
                            </div>
 
                            <div class="form-group">
                                <label for="password">Create Password</label>
-                               <f:password path="user.password" id="password" cssClass="form-control" />
+                               <f:password path="user.password" id="password" cssClass="form-control" required="required"/>
                            </div>
 
                            <div class="form-group">
                                <label for="username">Choose Username</label>
-                               <f:input path="user.loginName" id="username" cssClass="form-control" />
+                               <f:input path="user.loginName" id="username" cssClass="form-control" required="required"/>
                                <button type="button" id="checkAvailability">Check Availability</button>
                                <div id="availabilityResult" class="result"></div>
                            </div>
 
                            <div class="form-group">
                                <label for="height">Height (in meters)</label>
-                               <f:input path="user.height" id="height" cssClass="form-control" type="number" step="0.01" min="0" />
+                               <f:input path="user.height" id="height" cssClass="form-control" type="number" step="0.01" min="0" required="required"/>
                            </div>
 
                            <div class="form-group">
                                <label for="weight">Weight (in kilograms)</label>
-                               <f:input path="user.weight" id="weight" cssClass="form-control" type="number" step="0.01" min="0" />
+                               <f:input path="user.weight" id="weight" cssClass="form-control" type="number" step="0.01" min="0" required="required"/>
                            </div>
 
                            <button type="submit" class="register-button">Register</button>

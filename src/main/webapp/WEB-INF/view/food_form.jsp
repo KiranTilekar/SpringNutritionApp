@@ -10,10 +10,11 @@
         <title>Contact Form - Contact Application </title>
         <s:url var="url_css" value="/static/css/style.css"/>
         <link href="${url_css}" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
         <style>
             .food-list-container {
-                max-width: 800px;
+                max-width: 1200px;
                 margin: 0 auto;
                 padding: 20px;
                 background-color: #ffffff;
@@ -21,74 +22,150 @@
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
 
-            .food-table {
+            .food-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+                padding: 20px 0;
+            }
+
+            .food-tile {
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .food-tile:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .food-image {
                 width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
+                height: 200px;
+                object-fit: cover;
+                background-color: #f8f9fa;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
-            .food-table th,
-            .food-table td {
-                padding: 12px 15px;
-                text-align: left;
-                border-bottom: 1px solid #e9ecef;
+            .food-image i {
+                font-size: 48px;
+                color: #4CAF50;
             }
 
-            .food-table th {
+            .food-content {
+                padding: 15px;
+            }
+
+            .food-name {
+                font-size: 1.2em;
                 font-weight: bold;
                 color: #333;
-                background-color: #f8f9fa;
+                margin-bottom: 10px;
             }
 
-            .food-row:hover {
-                background-color: #f5f7fa;
+            .food-actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .food-button {
+                flex: 1;
+                padding: 8px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
+            }
+
+            .view-btn {
+                background-color: #e9ecef;
+                color: #495057;
+            }
+
+            .view-btn:hover {
+                background-color: #dee2e6;
+            }
+
+            .add-btn {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .add-btn:hover {
+                background-color: #45a049;
             }
 
             .success {
-                color: green;
-                font-weight: bold;
+                background-color: #d4edda;
+                color: #155724;
+                padding: 15px;
+                border-radius: 6px;
+                margin: 20px 0;
                 text-align: center;
-                margin: 10px 0;
+                font-weight: 500;
+            }
+
+            .container-header {
+                text-align: center;
+                color: #333;
+                margin-bottom: 30px;
+                font-size: 1.5em;
             }
         </style>
     </head>
-    <s:url var="url_bg" value="/static/images/bg.jpg"/>
-    <body background="${url_bg}">
 
-        <jsp:include page="include/header.jsp"/>
-
+    <body>
         <jsp:include page="include/menu.jsp"/>
 
         <div class="food-list-container">
-            <h3>You can add below food items to your meal .....</h3>
+            <h3 class="container-header">You can add below food items to your meal</h3>
 
             <c:if test="${param.ac eq 'sv'}">
-                <p class="success">Food Added Successfully</p>
+                <div class="success">
+                    <i class="fas fa-check-circle"></i> Food Added Successfully
+                </div>
             </c:if>
 
-            <div class="food-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Food Name</th>
-                            <th>View Details</th>
-                            <th>Add to Meal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="f" items="${foodList}">
-                            <tr class="food-row">
-                                <td>${f.name}</td>
-                                <td><a href="<c:url value="/getFoodById?foodId=${f.foodId}"/>">View</a></td>
-                                <td><a href="<c:url value="/setFoodById?foodId=${f.foodId}"/>">Add to Meal</a></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+
+
+            <div class="food-grid">
+                <c:forEach var="f" items="${foodList}">
+                    <c:if test="${f.foodId == 1}"> <s:url var="imgUrl" value="/static/images/rice.jpg" /> </c:if>
+                    <c:if test="${f.foodId == 2}"> <s:url var="imgUrl" value="/static/images/roti.jpg" /> </c:if>
+                    <c:if test="${f.foodId == 3}"> <s:url var="imgUrl" value="/static/images/daal.jpg" /> </c:if>
+                    <c:if test="${f.foodId == 4}"> <s:url var="imgUrl" value="/static/images/bhindi.webp" /> </c:if>
+                    <c:if test="${f.foodId == 5}"> <s:url var="imgUrl" value="/static/images/chicken.JPG" /> </c:if>
+
+
+                    <div class="food-tile">
+                        <div class="food-image">
+                            <img src="${imgUrl}" alt="${f.name}" class="food-image">
+                        </div>
+                        <div class="food-content">
+                            <div class="food-name">${f.name}</div>
+                            <div class="food-actions">
+                                <a href="<c:url value="/getFoodById?foodId=${f.foodId}"/>" class="food-button view-btn">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                <a href="<c:url value="/setFoodById?foodId=${f.foodId}"/>" class="food-button add-btn">
+                                    <i class="fas fa-plus"></i> Add to Meal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
 
         <br><jsp:include page="include/footer.jsp"/>
-
     </body>
 </html>

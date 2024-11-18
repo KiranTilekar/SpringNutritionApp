@@ -10,6 +10,39 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Login - Contact Application </title>
         <style>
+            /* Wrapper div */
+            .page-wrapper {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: auto;
+                z-index: 1000;
+            }
+
+            /* Header */
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background-color: #f9f9f9;
+                border-bottom: 1px solid #ddd;
+                padding: 10px;
+                z-index: 1001;
+            }
+
+            /* Menu */
+            .menu {
+                margin-top: 40px; /* Adjust based on header height */
+            }
+
+            /* Main content */
+            .content-wrapper {
+                padding-top: 80px; /* Adjust based on wrapper height */
+            }
+
+            /* Other styles remain unchanged */
             .login-container {
                 max-width: 400px;
                 margin: 50px auto;
@@ -37,7 +70,7 @@
             }
 
             input[type="text"], input[type="password"] {
-                width: 100%;
+                width: 96%;
                 padding: 10px;
                 border: 1px solid #ddd;
                 border-radius: 4px;
@@ -82,60 +115,55 @@
                 background-color: #00cc22;
                 margin-bottom: 15px;
             }
-
         </style>
     </head>
 
     <body>
-
-            <%-- Header --%>
+        <!-- Header -->
+        <div class="page-wrapper">
             <jsp:include page = "include/header.jsp"/>
 
+            <!-- Menu -->
+            <div class="menu">
+                <jsp:include page = "include/menu.jsp"/>
+            </div>
+        </div>
 
+        <div class="content-wrapper">
+            <div class="login-container">
+                <h2>Login Here...</h2>
 
-            <%-- Menu --%>
-            <jsp:include page = "include/menu.jsp"/>
+                <c:if test="${err!=null}">
+                    <div class="error-message">${err}</div>
+                </c:if>
 
+                <c:if test="${param.act eq 'lo'}">
+                    <div class="success-message">Logout Successfully! Thanks for using our application.</div>
+                </c:if>
 
-            <tr>
-                <div class="login-container">
-                    <h2>Login Here...</h2>
+                <c:if test="${param.act eq 'reg'}">
+                    <div class="success-message">Registered successfully. Please login</div>
+                </c:if>
 
-                    <c:if test="${err!=null}">
-                        <div class="error-message">${err}</div>
-                    </c:if>
+                <form action="login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="loginName" required>
+                    </div>
 
-                    <c:if test="${param.act eq 'lo'}">
-                        <div class="success-message">Logout Successfully! Thanks for using our application.</div>
-                    </c:if>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
 
-                    <c:if test="${param.act eq 'reg'}">
-                        <div class="success-message">Registered successfully. Please login</div>
-                    </c:if>
+                    <button type="submit" class="login-button">Login</button>
+                </form>
 
-                    <form action="login" method="POST">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="loginName" required>
-                        </div>
+                <p class="register-link"><a href="reg_form">New User Registration</a></p>
+            </div>
 
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" required>
-                        </div>
-
-                        <button type="submit" class="login-button">Login</button>
-                    </form>
-
-                    <p class="register-link"><a href="reg_form">New User Registration</a></p>
-                </div>
-            </tr>
-            <tr>
-                <td height="25px">
-                    <%-- Footer --%>
-                    <jsp:include page = "include/footer.jsp"/>
-                </td>
-            </tr>
-        </table>
+            <!-- Footer -->
+            <jsp:include page = "include/footer.jsp"/>
+        </div>
     </body>
 </html>

@@ -10,6 +10,10 @@
         <title>Food Details Form - Nutrition App </title>
 
         <style>
+
+            .body {
+                height: 100px;
+            }
             .nutrient-info-container {
                 max-width: 800px;
                 margin: 0 auto;
@@ -44,12 +48,9 @@
         </style>
     </head>
 
-
-
-        <jsp:include page="include/header.jsp"/><br>
-
         <jsp:include page="include/menu.jsp"/><br>
 
+    <body>
         <div class="nutrient-info-container">
             <h3>Nutrients of Food Below..... </h3>
 
@@ -80,7 +81,7 @@
                 </table>
             </div>
         </div>
-        <br><jsp:include page="include/footer.jsp"/>
-
     </body>
+
+    <jsp:include page="include/footer.jsp"/>
 </html>

@@ -2,107 +2,153 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@page session="true" %>
 <%@ page isELIgnored="false" %>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 <style>
-    .menu-bar {
-        text-align: center;
+    header {
+            background-color: #4CAF50;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Added to space out logo and nav */
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    .menu-item {
-        display: inline-block;
-        margin: 0 10px;
-        padding: 10px;
-        border-radius: 5px;
+    .header-content i {
+        margin-right: 10px;
+        font-size: 24px;
     }
 
-    .menu-item:hover {
-        background-color: #f0f0f0;
+    .header-content h1 {
+        font-size: 24px;
     }
 
-    .admin-menu {
-        display: none;
-    }
-
-    .user-menu {
-        display: none;
-    }
-
-    .current-user {
-        display: block;
-    }
-    .menu-bar {
-        text-align: center;
-        background-color: #f0f0f0; /* Light grey background */
-        padding: 10px 0;
-        border-radius: 5px;
-    }
-
-    .menu-item {
-        display: inline-block;
-        margin: 0 10px;
-        padding: 10px 20px;
-        border-radius: 25px;
-        text-decoration: none;
-        color: #333;
+    nav {
+        padding: 0.75rem 1rem;
+        z-index: 99;
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
     }
 
-    .menu-item:hover {
-        background-color: #e0e0e0; /* Slightly darker grey on hover */
-        transform: translateY(-2px); /* Slight lift on hover */
+    nav ul {
+        list-style: none;
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 10px;
+        justify-content: flex-end; /* Change this to 'flex-end' */
     }
 
-    .admin-menu {
-        display: none;
+    nav ul li {
+        position: relative;
     }
 
-    .user-menu {
-        display: none;
-    }
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
 
-    .current-user {
-        display: block !important;
-    }
-
-    /* Additional styles for button-like appearance */
-    .menu-item {
-        font-weight: bold;
-        letter-spacing: 0.5px;
-        cursor: pointer;
-    }
-
-    .menu-item::after {
-        content: "";
-        display: block;
-        width: 100%;
+    nav ul li a:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
         height: 2px;
-        background-color: #ccc;
-        margin-top: 5px;
+        background-color: white;
+        transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    nav ul li a:hover:before {
+        width: 80%;
+    }
+
+    nav ul li a:active {
+        transform: translateY(0);
     }
 
 </style>
 
 
-<div class="menu-bar">
-    <c:if test="${sessionScope.userId==null}">
-        <a href="index" class="menu-item">Home</a> |
-        <a href="index" class="menu-item">Login</a> |
-        <a href="reg_form" class="menu-item">Register</a>
-    </c:if>
+<c:if test="${sessionScope.userId==null}">
+    <header>
+        <div class="header-content">
+            <div style="display: flex; align-items: center;">
+                <i class="fas fa-apple-alt"></i>
+                <h1>Nutrition App</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="login_form"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+                    <li><a href="reg_form"><i class="fas fa-user-plus"></i>Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</c:if>
 
-    <c:if test="${sessionScope.userId!=null && sessionScope.role == 1}">
-        <a href="admin_dashboard" class="menu-item">Home</a> |
-        <a href="admin_users" class="menu-item">User List</a> |
-        <a href="logout" class="menu-item">Logout</a>
-    </c:if>
+<c:if test="${sessionScope.userId!=null && sessionScope.role == 1}">
+    <header>
+        <div class="header-content">
+            <div style="display: flex; align-items: center;">
+                <i class="fas fa-apple-alt"></i>
+                <h1>Nutrition App</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="#"><i class="fas fa-sign-in-alt"></i>User List</a></li>
+                    <li><a href="logout"><i class="fas fa-right-from-bracket"></i>Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</c:if>
 
-    <c:if test="${sessionScope.userId!=null && sessionScope.role == 2}">
-        <a href="user_dashboard" class="menu-item">Home</a> |
-        <a href="makeYourMeal" class="menu-item">Make Your Meal</a> |
-        <a href="seeMeal" class="menu-item">See Your Meal</a> |
-        <a href="logout" class="menu-item">Logout</a>
-    </c:if>
-</div>
+<c:if test="${sessionScope.userId!=null && sessionScope.role == 2}">
+    <header>
+        <div class="header-content">
+            <div style="display: flex; align-items: center;">
+                <i class="fas fa-apple-alt"></i>
+                <h1>Nutrition App</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="user_dashboard"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="makeYourMeal"><i class="fas fa-utensils"></i>Make Your Meal</a></li>
+                    <li><a href="seeMeal"><i class="fas fa-clipboard-list"></i>See Your Meal</a></li>
+                    <li><a href="logout?act=lo"><i class="fas fa-right-from-bracket"></i>Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</c:if>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

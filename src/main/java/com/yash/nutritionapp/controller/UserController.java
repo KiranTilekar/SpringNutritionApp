@@ -24,7 +24,13 @@ public class UserController {
     @RequestMapping(value = {"/", "/index"})
     public String index(Model m) {
         m.addAttribute("command", new LoginCommand());
-        return "index"; // /WEB-INF/view/index.jsp
+        return "index1"; // /WEB-INF/view/index.jsp
+    }
+
+    @RequestMapping(value = "/login_form")
+    public String loginPage() {
+
+        return "login_form"; // /WEB-INF/view/login_form.jsp
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -60,11 +66,12 @@ public class UserController {
     @RequestMapping(value = {"/logout"})
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:index?act=lo";
+        return "index1";
     }
 
     @RequestMapping(value = "/user_dashboard")
     public String userDashboard() {
+
         return "dashboard_user"; // /WEB-INF/view/index.jsp
     }
 
@@ -86,7 +93,7 @@ public class UserController {
             User user = cmd.getUser();
             user.setRole(UserService.ROLE_USER);
             userService.register(user);
-            return "redirect:index?act=reg"; //Login Page
+            return "redirect:login_form?act=reg"; //Login Page
         } catch (DuplicateKeyException e) {
             e.printStackTrace();
             m.addAttribute("err", "Username is already registered. Please select another username.");
