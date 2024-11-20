@@ -130,7 +130,7 @@
                 <img src="static/images/protein.avif" alt="Proteins" class="nutrient-icon">
                 <h3 class="nutrient-name">Proteins</h3>
                 <p class="nutrient-description">Essential for muscle building and repair</p>
-                <a href="learnMore" class="learn-more-btn">Learn More</a>
+                <a href="learnMore?id=1" class="learn-more-btn">Learn More</a>
             </div>
 
             <!-- Carbohydrates -->
@@ -138,7 +138,7 @@
                 <img src="static/images/carbs.avif" alt="Carbohydrates" class="nutrient-icon">
                 <h3 class="nutrient-name">Carbohydrates</h3>
                 <p class="nutrient-description">Primary source of energy for the body</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learnMore?id=2" class="learn-more-btn">Learn More</a>
             </div>
 
             <!-- Fats -->
@@ -146,7 +146,7 @@
                 <img src="static/images/fats.jpg" alt="Fats" class="nutrient-icon">
                 <h3 class="nutrient-name">Fats</h3>
                 <p class="nutrient-description">Important for hormone production and cell health</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learnMore?id=3" class="learn-more-btn">Learn More</a>
             </div>
 
             <!-- Vitamins -->
@@ -154,7 +154,7 @@
                 <img src="static/images/vitamins.png" alt="Vitamins" class="nutrient-icon">
                 <h3 class="nutrient-name">Vitamins</h3>
                 <p class="nutrient-description">Essential for various bodily functions</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learnMore?id=4" class="learn-more-btn">Learn More</a>
             </div>
 
             <!-- Minerals -->
@@ -163,7 +163,7 @@
                 <h3 class="nutrient-name">Iron</h3>
                 <p class="nutrient-description">Essential for hemoglobin formation and oxygen
                     transport in blood.</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learnMore?id=5" class="learn-more-btn">Learn More</a>
             </div>
 
             <!-- Fiber -->
@@ -172,7 +172,7 @@
                 <h3 class="nutrient-name">Magnesium</h3>
                 <p class="nutrient-description">Crucial for nerve and muscle function, blood
                     sugar control, and blood pressure regulation.</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learnMore?id=6" class="learn-more-btn">Learn More</a>
             </div>
 
             <!-- Water -->
@@ -181,7 +181,7 @@
                 <h3 class="nutrient-name">Phosphorous</h3>
                 <p class="nutrient-description">Important for bone and teeth health, energy
                     production, and cell repair.</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learnMore?id=7" class="learn-more-btn">Learn More</a>
             </div>
 
             <!-- Antioxidants -->
@@ -189,7 +189,7 @@
                 <img src="static/images/water.jpg" alt="Water" class="nutrient-icon">
                 <h3 class="nutrient-name">Water</h3>
                 <p class="nutrient-description">Vital for all body functions and hydration</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learnMore?id=8" class="learn-more-btn">Learn More</a>
             </div>
         </div>
 

@@ -146,8 +146,6 @@
                 </div>
             </c:if>
 
-
-
             <div class="food-grid">
                 <c:forEach var="f" items="${foodList}">
                     <c:if test="${f.foodId == 1}"> <s:url var="imgUrl" value="/static/images/rice.jpg" /> </c:if>

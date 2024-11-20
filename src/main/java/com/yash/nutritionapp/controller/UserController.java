@@ -29,7 +29,6 @@ public class UserController {
 
     @RequestMapping(value = "/login_form")
     public String loginPage() {
-
         return "login_form"; // /WEB-INF/view/login_form.jsp
     }
 
@@ -136,5 +135,6 @@ public class UserController {
         session.setAttribute("user", u);
         session.setAttribute("userId", u.getUserId());
         session.setAttribute("role", u.getRole());
+        session.setAttribute("category", u.getCategory());
     }
 }

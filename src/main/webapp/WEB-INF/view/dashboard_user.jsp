@@ -242,7 +242,7 @@
 
             <div class="meal-section">
                 <p>Here is your meal according to your category</p>
-                <a href="recommendMeals" class="meal-button">
+                <a href="recommendedMeal" class="meal-button">
                     <i class="fas fa-utensils"></i>
                     See Meal
                 </a>

@@ -15,10 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class FoodServiceImpl extends BaseDAO implements FoodService {
@@ -50,7 +47,6 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
 
     @Override
     public List<Food> findUserMeal(Integer userId) {
-
         return foodDAO.findByProperty("userId", userId);
     }
 
@@ -81,7 +77,6 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
 
     @Override
     public void setFoodById(Integer foodId, Integer userId) {
-        System.out.println("inside saving food in user's meal");
         String sql = "insert into userMeal (userId, foodId) VALUES (:userId, :foodId)";
 
         Map m = new HashMap();
@@ -93,6 +88,17 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
         super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
         Integer mealId = kh.getKey().intValue();
 
+    }
+
+    @Override
+    public List<Food> getRecommendedMeal(String category) {
+        System.out.println("category in sql = " + category);
+        String sql = "SELECT * FROM food WHERE category = '" + category + "'";
+        System.out.println("sql query: " + sql);
+        List<Food> food= getJdbcTemplate().query(sql, new FoodRowMapper(), category);
+        System.out.println("sql query1: " + sql);
+        System.out.println("Food List = " + food);
+        return food;
     }
 
 

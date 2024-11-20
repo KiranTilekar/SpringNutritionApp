@@ -45,7 +45,6 @@ public class FoodController {
                 Integer userId = (Integer) session.getAttribute("userId");
                 c.setUserId(userId);//FK ; logged in userId
                 foodService.save(c);
-                System.out.println("c:"+c);
                 return "redirect:user_clist?act=sv";//redirect user to contact list url
             } catch (Exception e) {
                 e.printStackTrace();
@@ -102,20 +101,48 @@ public class FoodController {
     @RequestMapping(value="/setFoodById")
     public String setFoodById(@RequestParam("foodId") Integer foodId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
-        System.out.println("foodID:"+foodId);
-        System.out.println("userId:"+userId);
         foodService.setFoodById(foodId,userId);
         return "redirect:makeYourMeal?ac=sv";
 //        return "demo";
     }
 
-    @RequestMapping(value="/recommendMeals")
-    public String getFoodById() {
+    @RequestMapping(value="/recommendedMeal")
+    public String getFoodById(Model m, HttpSession session) {
+        String category = session.getAttribute("category").toString();
+        System.out.println("category = " + category);
+        m.addAttribute("recommendedMeal", foodService.getRecommendedMeal(category));
         return "customMeal";
     }
 
     @RequestMapping(value="/learnMore")
-    public String getProtein() {
-        return "protein";
+    public String getNutrient(@RequestParam("id") Integer id) {
+
+        if (id == 1) {
+            return "protein";
+        }
+        else if (id == 2) {
+            return "carbohydrates";
+        }
+        else if (id == 3) {
+            return "fats";
+        }
+        else if (id == 4) {
+            return "vitamins";
+        }
+        else if (id == 5) {
+            return "iron";
+        }
+        else if (id == 6) {
+            return "magnesium";
+        }
+        else if (id == 7) {
+            return "phosphorous";
+        }
+        else if (id == 8) {
+            return "water";
+        }
+        else {
+            return null;
+        }
     }
 }

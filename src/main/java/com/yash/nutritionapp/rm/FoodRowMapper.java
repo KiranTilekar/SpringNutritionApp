@@ -22,6 +22,7 @@ public class FoodRowMapper implements RowMapper<Food> {
         f.setMagnesium(rs.getString("magnesium"));
         f.setPhosphorous(rs.getString("phosphorous"));
         f.setCategory(rs.getString("category"));
+        f.setFoodImage(rs.getString("foodImage"));
 
         return f;
     }

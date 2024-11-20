@@ -12,6 +12,8 @@ public class Food {
     private String magnesium;
     private String phosphorous;
     private String category;
+    private String foodImage;
+
 
     public Food() {
 
@@ -99,6 +101,14 @@ public class Food {
         this.category = category;
     }
 
+    public String getFoodImage() {
+        return foodImage;
+    }
+
+    public void setFoodImage(String foodImage) {
+        this.foodImage = foodImage;
+    }
+
     @Override
     public String toString() {
         return "Food{" +
@@ -112,6 +122,7 @@ public class Food {
                 ", magnesium='" + magnesium + '\'' +
                 ", phosphorous='" + phosphorous + '\'' +
                 ", category='" + category + '\'' +
+                ", foodImage='" + foodImage + '\'' +
                 '}';
     }
 }
