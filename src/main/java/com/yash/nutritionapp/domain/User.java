@@ -13,6 +13,7 @@ public class User {
     private float weight;
     private float BMI;
     private Integer role;
+    private String category;
 
 
     public User() {
@@ -91,6 +92,14 @@ public class User {
         this.role = role;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -103,7 +112,7 @@ public class User {
                 ", weight=" + weight +
                 ", BMI=" + BMI +
                 ", role=" + role +
+                ", category='" + category + '\'' +
                 '}';
     }
-
 }

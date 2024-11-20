@@ -45,12 +45,6 @@
         <div class="main-container">
             <table class="layout-table">
                 <tr>
-                    <td class="header-cell">
-                        <%-- Header --%>
-                        <jsp:include page="include/header.jsp"/>
-                    </td>
-                </tr>
-                <tr>
                     <td class="menu-cell">
                         <%-- Menu --%>
                         <jsp:include page="include/menu.jsp"/>

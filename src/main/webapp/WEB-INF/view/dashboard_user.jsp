@@ -4,6 +4,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 
+<%@page import="com.yash.nutritionapp.domain.User"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,19 +18,31 @@
                 min-height: 100vh;
                 display: flex;
                 flex-direction: column;
+                margin: 0;
+                padding: 0;
                 background-color: #f0f8f0;
                 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f0f8f0'/%3E%3Cg fill='%234CAF50' opacity='0.1'%3E%3Ccircle cx='200' cy='150' r='30'/%3E%3Cpath d='M380 150 C 390 120, 410 120, 420 150 C 430 180, 450 180, 460 150 L 460 200 L 380 200 Z'/%3E%3Cpath d='M180 300 Q 200 250, 220 300 L 220 350 L 180 350 Z'/%3E%3Cpath d='M500 350 C 520 320, 540 320, 560 350 L 560 400 L 500 400 Z'/%3E%3Cpath d='M300 450 Q 320 400, 340 450 L 340 500 L 300 500 Z'/%3E%3C/g%3E%3Cg fill='%23388E3C' opacity='0.1'%3E%3Ccircle cx='600' cy='200' r='25'/%3E%3Cpath d='M100 400 C 110 370, 130 370, 140 400 C 150 430, 170 430, 180 400 L 180 450 L 100 450 Z'/%3E%3Cpath d='M650 450 Q 670 400, 690 450 L 690 500 L 650 500 Z'/%3E%3C/g%3E%3C/svg%3E");
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
-                margin: 0;
-                padding: 0;
+            }
+
+            .dashboard-content {
+                flex: 1;
+                margin-left: 60px;
+                padding: 40px;
+                transition: 0.5s;
+                min-height: calc(100vh - 80px);
+            }
+
+            .dashboard-content.expanded {
+                margin-left: 250px;
             }
 
             .sidebar {
                 height: 100%;
-                width: 60px; /* Start collapsed */
+                width: 60px;
                 position: fixed;
                 z-index: 1;
                 top: 0;
@@ -91,25 +105,106 @@
                 background-color: #388E3C;
             }
 
-            .content {
-                margin-left: 60px; /* Match collapsed sidebar width */
+            .user-info {
+                background: rgba(255, 255, 255, 0.9);
                 padding: 20px;
-                transition: 0.5s;
+                border-radius: 10px;
+                margin-bottom: 30px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                max-width: 800px;
             }
 
-            .content.expanded {
-                margin-left: 250px;
+            .user-info .welcome {
+                font-size: 1.4em;
+                color: #333;
+                margin-bottom: 15px;
+            }
+
+            .user-info .bmi-info {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            .bmi-card {
+                background: white;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                flex: 1;
+            }
+
+            .bmi-card label {
+                color: #666;
+                font-size: 0.9em;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .bmi-card .value {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #4CAF50;
+            }
+
+            .meal-section {
+                background: rgba(255, 255, 255, 0.9);
+                padding: 20px;
+                border-radius: 10px;
+                margin-top: 20px;
+                text-align: center;
+                max-width: 800px;
+            }
+
+            .meal-section p {
+                font-size: 1.2em;
+                color: #555;
+                margin-bottom: 20px;
+            }
+
+            .meal-button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 12px 25px;
+                border-radius: 25px;
+                font-size: 1.1em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                text-decoration: none;
+            }
+
+            .meal-button:hover {
+                background-color: #388E3C;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .meal-button i {
+                margin-right: 8px;
             }
 
             @media screen and (max-width: 768px) {
-                .sidebar {
-                    width: 60px;
-                }
-                .content {
+                .dashboard-content {
                     margin-left: 60px;
+                    padding: 20px;
+                }
+                .user-info, .meal-section {
+                    margin: 15px auto;
                 }
             }
         </style>
+
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById("mySidebar");
+                const dashboardContent = document.querySelector(".dashboard-content");
+                sidebar.classList.toggle("expanded");
+                dashboardContent.classList.toggle("expanded");
+            }
+        </script>
     </head>
 
     <%-- Header --%>
@@ -120,25 +215,39 @@
             <button class="toggle-btn" onclick="toggleSidebar()">
                 <i class="fas fa-bars"></i>
             </button>
-            <a href="#profile"><i class="fas fa-user"></i> <span>Your Profile</span></a>
-            <a href="#meal"><i class="fas fa-utensils"></i> <span>Get Customized Meal</span></a>
+
+            <a href="recommendMeals"><i class="fas fa-utensils"></i> <span>Get Customized Meal</span></a>
             <a href="makeYourMeal"><i class="fas fa-utensils"></i> <span>Make Your Meal</span></a>
             <a href="seeMeal"><i class="fas fa-clipboard-list"></i> <span>See Your Meal</span></a>
-            <a href="#progress"><i class="fas fa-chart-line"></i> <span>Track Your Progress</span></a>
-            <a href="#goal"><i class="fas fa-bullseye"></i> <span>Set Your Goal</span></a>
-            <a href="#recipes"><i class="fas fa-book-open"></i> <span>Learn Recipes</span></a>
-            <a href="#notifications"><i class="fas fa-bell"></i> <span>Notifications</span></a>
-            <a href="#shop"><i class="fas fa-shopping-cart"></i> <span>Buy Health Products</span></a>
         </div>
 
-        <script>
-            function toggleSidebar() {
-                const sidebar = document.getElementById("mySidebar");
-                const content = document.querySelector(".content");
-                sidebar.classList.toggle("expanded");
-                content.classList.toggle("expanded");
-            }
-        </script>
+        <div class="dashboard-content">
+
+            <div class="user-info">
+                <% User user = (User) session.getAttribute("user"); %>
+                <div class="welcome">
+                    Welcome, <strong><%= user.getName() %></strong>
+                </div>
+                <div class="bmi-info">
+                    <div class="bmi-card">
+                        <label>Your BMI</label>
+                        <div class="value"><%= String.format("%.1f", user.getBMI()) %></div>
+                    </div>
+                    <div class="bmi-card">
+                        <label>Category</label>
+                        <div class="value"><%= user.getCategory() %></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meal-section">
+                <p>Here is your meal according to your category</p>
+                <a href="recommendMeals" class="meal-button">
+                    <i class="fas fa-utensils"></i>
+                    See Meal
+                </a>
+            </div>
+        </div>
     </body>
 
     <%-- Footer --%>

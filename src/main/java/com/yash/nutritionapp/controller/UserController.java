@@ -40,26 +40,30 @@ public class UserController {
 
             if(loggedInUser == null) {
                 m.addAttribute("err", "Login failed enter valid credentials");
-                return "index";
-            } else {
+                return "login_form";
+            }
+            else {
                 //success
                 // check role and redirect to appropriate dashboard
 
                 if(loggedInUser.getRole().equals(UserService.ROLE_ADMIN)) {
                     addUserInSession(loggedInUser, session);
                     return "redirect:admin_dashboard";
-                } else if (loggedInUser.getRole().equals(UserService.ROLE_USER)) {
+                }
+                else if (loggedInUser.getRole().equals(UserService.ROLE_USER)) {
                     addUserInSession(loggedInUser, session);
                     return "redirect:user_dashboard";
-                } else {
+                }
+                else {
                     m.addAttribute("err", "invalid user role");
-                    return "index";
+                    return "login_form";
                 }
             }
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             m.addAttribute("error while login user");
             ex.printStackTrace();
-            return "index";
+            return "login_form";
         }
     }
 
@@ -71,7 +75,6 @@ public class UserController {
 
     @RequestMapping(value = "/user_dashboard")
     public String userDashboard() {
-
         return "dashboard_user"; // /WEB-INF/view/index.jsp
     }
 

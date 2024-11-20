@@ -19,8 +19,10 @@ public class UserDAOImpl extends BaseDAO implements UserDAO{
 
     @Override
     public void save(User u) {
-        String sql = "INSERT INTO USER(name, email, password, loginName, height, weight, BMI, role)"
-                + "VALUES(:name, :email, :password, :loginName, :height, :weight, :BMI, :role)";
+        String sql = "INSERT INTO USER(name, email, password, loginName, height, weight, BMI, role, category)"
+                + "VALUES(:name, :email, :password, :loginName, :height, :weight, :BMI, :role, :category)";
+
+        float BMI = u.getWeight()/(u.getHeight() * u.getHeight());
 
         Map m = new HashMap();
         m.put("name", u.getName());
@@ -29,8 +31,21 @@ public class UserDAOImpl extends BaseDAO implements UserDAO{
         m.put("loginName", u.getLoginName());
         m.put("height", u.getHeight());
         m.put("weight", u.getWeight());
-        m.put("BMI",(u.getWeight()/(u.getHeight() * u.getHeight())));
+        m.put("BMI", BMI);
         m.put("role", u.getRole());
+
+        String category;
+        if(BMI < 18.5) {
+            category = "Underweight";
+        }
+        else if (BMI >= 18.5 && BMI <= 24.9) {
+            category = "Normal Weight";
+        }
+        else {
+            category = "Overweight";
+        }
+
+        m.put("category", category);
 
         KeyHolder kh = new GeneratedKeyHolder(); // bind auto-incremented value
         SqlParameterSource ps = new MapSqlParameterSource(m);

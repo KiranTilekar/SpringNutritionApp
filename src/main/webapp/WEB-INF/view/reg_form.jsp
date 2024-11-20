@@ -39,6 +39,17 @@
             }
         }
 
+        document.getElementById("name").addEventListener("keypress", function(event) {
+            if (/[0-9]/.test(event.key)) {
+                event.preventDefault();
+                document.getElementById("name-validation").innerHTML = "Numbers are not allowed";
+
+                setTimeout(() => {
+                    document.getElementById("name-validation").innerHTML = "";
+                }, 2000);
+            }
+        });
+
         function validateEmail () {
             const email = document.getElementById("email").value;
             const splitedEmail = email.split("@");
@@ -50,9 +61,54 @@
                 document.getElementById("email-validation").innerHTML = "";
             }
         }
+
+        function validatePassword() {
+        		const password = document.getElementById("password").value;
+
+        	    const specialCharacterSet = "!@#$%^&*()-_=+";
+        	    let hasSpecialChar = false;
+
+        	    for (let char of specialCharacterSet) {
+        	        if (password.includes(char)) {
+        	            hasSpecialChar = true;
+        	            break;
+        	        }
+        	    }
+
+        	    if (!hasSpecialChar) {
+        	    	document.getElementById("password-validation").innerHTML = "Password must contain special character";
+        	    }
+        	    else if (password.length < 8) {
+        	    	document.getElementById("password-validation").innerHTML = "Password must be of atleast 8 charaters";
+        	    }
+        	    else if (password == password.toLowerCase()) {
+        	        document.getElementById("password-validation").innerHTML = "Enter at least one uppercase letter";
+                }
+                else if (password === password.toUpperCase()) {
+                    document.getElementById("password-validation").innerHTML = "Enter at least one lowercase letter";
+                }
+                else if (!/\d/.test(password)) {
+                    document.getElementById("password-validation").innerHTML = "Enter at least one digit in your password";
+        	    }
+        	    else {
+        	    	document.getElementById("password-validation").innerHTML = "";
+        	    }
+        	}
     </script>
 
     <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f0f8f0'/%3E%3Cg fill='%234CAF50' opacity='0.1'%3E%3Ccircle cx='200' cy='150' r='30'/%3E%3Cpath d='M380 150 C 390 120, 410 120, 420 150 C 430 180, 450 180, 460 150 L 460 200 L 380 200 Z'/%3E%3Cpath d='M180 300 Q 200 250, 220 300 L 220 350 L 180 350 Z'/%3E%3Cpath d='M500 350 C 520 320, 540 320, 560 350 L 560 400 L 500 400 Z'/%3E%3Cpath d='M300 450 Q 320 400, 340 450 L 340 500 L 300 500 Z'/%3E%3C/g%3E%3Cg fill='%23388E3C' opacity='0.1'%3E%3Ccircle cx='600' cy='200' r='25'/%3E%3Cpath d='M100 400 C 110 370, 130 370, 140 400 C 150 430, 170 430, 180 400 L 180 450 L 100 450 Z'/%3E%3Cpath d='M650 450 Q 670 400, 690 450 L 690 500 L 650 500 Z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
         .register-container {
             max-width: 500px;
             margin: 50px auto;
@@ -80,7 +136,7 @@
         }
 
         .form-control {
-            width: 100%;
+            width: 95%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
@@ -144,10 +200,10 @@
                    <h2>Create Your Account</h2>
 
                    <c:if test="${param.act eq 're'}">
-                       <div class="success-message">Registration Successful! Please check your email for verification.</div>
+                       <div class="success-message">Registration Successful!</div>
                    </c:if>
 
-                   <div class="register-container">
+                   <div>
 
 
                        <c:if test="${err!=null}">
@@ -155,12 +211,12 @@
                        </c:if>
 
                        <c:if test="${param.act eq 're'}">
-                           <div class="success-message">Registration Successful! Please check your email for verification.</div>
+                           <div class="success-message">Registration Successful!</div>
                        </c:if>
 
                        <f:form action="register" modelAttribute="command" method="POST" cssClass="registrationForm">
                            <div class="form-group">
-                               <label for="name">Full Name</label>
+                               <label for="name">Your Name</label>
                                <f:input path="user.name" id="name" cssClass="form-control" onInput="validateName()" required="required"/>
                                <div id="name-validation" style="color:red;"></div>
                            </div>
@@ -173,12 +229,14 @@
 
                            <div class="form-group">
                                <label for="password">Create Password</label>
-                               <f:password path="user.password" id="password" cssClass="form-control" required="required"/>
+                               <f:password path="user.password" id="password" cssClass="form-control" onInput="validatePassword()" required="required"/>
+                               <div id="password-validation" style="color:red;"></div>
                            </div>
 
                            <div class="form-group">
                                <label for="username">Choose Username</label>
                                <f:input path="user.loginName" id="username" cssClass="form-control" required="required"/>
+                               <div id="name-validation" style="color:red;"></div>
                                <button type="button" id="checkAvailability">Check Availability</button>
                                <div id="availabilityResult" class="result"></div>
                            </div>

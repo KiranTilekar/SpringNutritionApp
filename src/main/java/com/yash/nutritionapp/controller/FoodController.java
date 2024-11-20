@@ -109,9 +109,13 @@ public class FoodController {
 //        return "demo";
     }
 
-//    @RequestMapping(value="/seeMealRedirect")
-//    public String getFoodById() {
-//        return "food_form";
-//    }
+    @RequestMapping(value="/recommendMeals")
+    public String getFoodById() {
+        return "customMeal";
+    }
 
+    @RequestMapping(value="/learnMore")
+    public String getProtein() {
+        return "protein";
+    }
 }

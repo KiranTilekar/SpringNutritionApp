@@ -11,6 +11,7 @@ public class Food {
     private String iron;
     private String magnesium;
     private String phosphorous;
+    private String category;
 
     public Food() {
 
@@ -81,16 +82,26 @@ public class Food {
     }
 
     public String getPhosphorous() {
+
         return phosphorous;
     }
 
     public void setPhosphorous(String phosphorous) {
+
         this.phosphorous = phosphorous;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
-        return "Contact{" +
+        return "Food{" +
                 "foodId=" + foodId +
                 ", userId=" + userId +
                 ", name='" + name + '\'' +
@@ -100,6 +111,7 @@ public class Food {
                 ", iron='" + iron + '\'' +
                 ", magnesium='" + magnesium + '\'' +
                 ", phosphorous='" + phosphorous + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
 }

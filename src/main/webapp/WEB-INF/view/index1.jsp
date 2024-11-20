@@ -115,9 +115,7 @@
 
         <jsp:include page="include/menu.jsp" />
 
-        <c:if test="${param.act eq 'lo'}">
-            <div class="success-message">Logout Successfully! Thanks for using our application.</div>
-        </c:if>
+
 
         <main>
             <div class="content-container">
@@ -132,7 +130,7 @@
                 <img src="static/images/protein.avif" alt="Proteins" class="nutrient-icon">
                 <h3 class="nutrient-name">Proteins</h3>
                 <p class="nutrient-description">Essential for muscle building and repair</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learnMore" class="learn-more-btn">Learn More</a>
             </div>
 
             <!-- Carbohydrates -->
