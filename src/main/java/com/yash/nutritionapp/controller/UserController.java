@@ -39,7 +39,7 @@ public class UserController {
 
             if(loggedInUser == null) {
                 m.addAttribute("err", "Login failed enter valid credentials");
-                return "login_form";
+                return "index1";
             }
             else {
                 //success
@@ -73,7 +73,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user_dashboard")
-    public String userDashboard() {
+    public String userDashboard(HttpSession session) {
+        if(session.getAttribute("user") == null) {
+            return "redirect:login_form";
+        }
         return "dashboard_user"; // /WEB-INF/view/index.jsp
     }
 

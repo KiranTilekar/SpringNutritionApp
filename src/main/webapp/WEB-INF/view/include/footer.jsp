@@ -14,7 +14,15 @@
                 width: 100%;
     }
 
-    copyright-link {
-                text-decoration: none;
-    }
+        .copyright-link {
+            color: white; /* Set color for normal state */
+        }
+
+        .copyright-link:visited {
+            color: white; /* Keep color consistent when visited */
+        }
+
+        .copyright-link:hover {
+            color: blue; /* Keep color consistent on hover */
+        }
 </style>

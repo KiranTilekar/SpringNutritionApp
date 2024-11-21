@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Fats - Essential Nutrient Information</title>
+    <title>Fat - Essential Nutrient Information</title>
     <style>
         body {
             margin: 0;
@@ -74,28 +74,34 @@
     <jsp:include page="include/menu.jsp" />
 
     <div class="container">
-        <h1>Fats - Essential Nutrient</h1>
+        <h1>Fat - Essential Nutrient</h1>
 
         <div class="section">
-            <h2>What are Fats?</h2>
-            <p>Fats are an essential nutrient that play crucial roles in energy production, absorption of vitamins, and maintaining healthy skin and hair.</p>
+            <h2>What is Fat?</h2>
+            <p>Fat is a macronutrient that serves multiple functions in the body, including energy storage, absorption of fat-soluble vitamins, and maintaining cell membrane structure.</p>
         </div>
 
         <div class="section">
             <h2>Rich Fat Sources</h2>
             <div class="food-list">
-                <div class="food-item">Oils (olive, coconut, avocado)</div>
-                <div class="food-item">Nuts and seeds</div>
-                <div class="food-item">Fatty fish</div>
-                <div class="food-item">Full-fat dairy products</div>
-                <div class="food-item">Red meat</div>
+                <div class="food-item">Butter</div>
+                <div class="food-item">Olive Oil</div>
+                <div class="food-item">Avocado</div>
+                <div class="food-item">Coconut Oil</div>
+                <div class="food-item">Nuts</div>
+                <div class="food-item">Seeds</div>
+                <div class="food-item">Fatty Fish</div>
             </div>
         </div>
 
         <div class="section">
             <h2>Daily Recommended Intake</h2>
             <div class="recommendation">
-                <p>The daily recommended intake varies based on age, sex, and activity level. Generally, adults need about 20-35% of their total daily calories from fat.</p>
+                <h3>For Men:</h3>
+                <p>70 grams per day for the average sedentary man</p>
+                <h3>For Women:</h3>
+                <p>60 grams per day for the average sedentary woman</p>
+                <p><em>Note: Athletes and active individuals may need more fat based on their activity level.</em></p>
             </div>
         </div>
 
@@ -103,27 +109,32 @@
             <h2>Effects of Fat Deficiency</h2>
             <div class="warning">
                 <ul>
-                    <li>Impaired absorption of fat-soluble vitamins (A, D, E, K)</li>
-                    <li>Dry skin and hair</li>
+                    <li>Impaired absorption of fat-soluble vitamins</li>
+                    <li>Difficulty maintaining body temperature</li>
                     <li>Weakened immune system</li>
-                    <li>Difficulty absorbing certain nutrients</li>
+                    <li>Hair loss and skin problems</li>
+                    <li>Increased risk of infections</li>
+                    <li>Reduced energy levels</li>
                 </ul>
             </div>
         </div>
 
         <div class="section">
-            <h2>Effects of Excessive Fat Consumption</h2>
+            <h2>Effects of Excessive Fat Intake</h2>
             <div class="warning">
                 <ul>
                     <li>Weight gain and obesity</li>
                     <li>Increased risk of heart disease</li>
                     <li>High cholesterol levels</li>
+                    <li>Digestive issues</li>
+                    <li>Increased risk of certain cancers</li>
                     <li>Insulin resistance and type 2 diabetes</li>
                 </ul>
             </div>
         </div>
 
         <%
+        // You can add dynamic content here, such as pulling fat information from a database
         String lastUpdated = new java.text.SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date());
         %>
 

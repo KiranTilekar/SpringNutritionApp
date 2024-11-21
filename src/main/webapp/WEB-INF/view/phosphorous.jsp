@@ -78,32 +78,30 @@
 
         <div class="section">
             <h2>What is Phosphorus?</h2>
-            <p>Phosphorus is a chemical element with atomic number 15. It plays a crucial role in various biological processes, including DNA synthesis, ATP production, and bone formation.</p>
-        </div>
-
-        <div class="section">
-            <h2>Forms of Phosphorus</h2>
-            <ul>
-                <li>Phosphate (PO43-)</li>
-                <li>Phosphite (PO33-)</li>
-            </ul>
+            <p>Phosphorus is a macronutrient that plays a crucial role in various bodily functions, including bone health, DNA synthesis, and energy production.</p>
         </div>
 
         <div class="section">
             <h2>Rich Phosphorus Sources</h2>
             <div class="food-list">
-                <div class="food-item">Dairy products</div>
-                <div class="food-item">Meat and poultry</div>
-                <div class="food-item">Fish and seafood</div>
-                <div class="food-item">Whole grains</div>
-                <div class="food-item">Legumes</div>
+                <div class="food-item">Meat (beef, pork, lamb)</div>
+                <div class="food-item">Fish (salmon, mackerel, sardines)</div>
+                <div class="food-item">Eggs</div>
+                <div class="food-item">Dairy products (milk, cheese, yogurt)</div>
+                <div class="food-item">Nuts and seeds (almonds, pumpkin seeds, sunflower seeds)</div>
+                <div class="food-item">Whole grains (brown rice, quinoa, oats)</div>
+                <div class="food-item">Legumes (lentils, chickpeas, black beans)</div>
             </div>
         </div>
 
         <div class="section">
             <h2>Daily Recommended Intake</h2>
             <div class="recommendation">
-                <p>The daily recommended intake varies based on factors such as age, sex, and overall health. Generally, adults need about 1,000 mg per day.</p>
+                <h3>For Men:</h3>
+                <p>1,000 mg per day</p>
+                <h3>For Women:</h3>
+                <p>1,000 mg per day</p>
+                <p><em>Note: These values apply to adults. Pregnant women should aim for 1,300 mg per day during pregnancy and 1,200 mg per day while breastfeeding.</em></p>
             </div>
         </div>
 
@@ -111,30 +109,29 @@
             <h2>Effects of Phosphorus Deficiency</h2>
             <div class="warning">
                 <ul>
-                    <li>Rickets in children</li>
-                    <li>Osteomalacia in adults</li>
-                    <li>Weakened immune system</li>
-                    <li>Impaired DNA synthesis</li>
+                    <li>Weakness and fatigue</li>
+                    <li>Bone pain and softening of bones (osteomalacia)</li>
+                    <li>Impaired immune function</li>
+                    <li>Hair loss and skin problems</li>
+                    <li>Heart rhythm abnormalities</li>
+                    <li>Respiratory failure in severe cases</li>
                 </ul>
             </div>
         </div>
 
         <div class="section">
-            <h2>Effects of Excessive Phosphorus Consumption</h2>
+            <h2>Effects of Phosphorus Overdose</h2>
             <div class="warning">
                 <ul>
-                    <li>Hypophosphatemia (low phosphate levels)</li>
-                    <li>Kidney strain and potential damage</li>
-                    <li>Digestive issues</li>
-                    <li>Interference with calcium absorption</li>
+                    <li>Kidney damage and failure</li>
+                    <li>Abdominal pain</li>
+                    <li>Nausea and vomiting</li>
+                    <li>Diarrhea</li>
+                    <li>Headache</li>
+                    <li>Seizures in severe cases</li>
                 </ul>
             </div>
         </div>
-
-        <%
-        String lastUpdated = new java.text.SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date());
-        %>
-
     </div>
 
     <jsp:include page="include/footer.jsp" />

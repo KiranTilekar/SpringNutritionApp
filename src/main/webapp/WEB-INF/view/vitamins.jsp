@@ -78,35 +78,30 @@
 
         <div class="section">
             <h2>What are Vitamins?</h2>
-            <p>Vitamins are organic compounds that are essential for various bodily functions, including energy production, immune function, and maintaining healthy skin and hair.</p>
-        </div>
-
-        <div class="section">
-            <h2>Types of Vitamins</h2>
-            <ul>
-                <li>Vitamin A</li>
-                <li>Vitamin D</li>
-                <li>Vitamin E</li>
-                <li>Vitamin K</li>
-                <li>B vitamins (B1: Thiamin, B2: Riboflavin, B3: Niacin, B5: Pantothenic acid, B6: Pyridoxine, B7: Biotin, B9: Folic acid, B12)</li>
-            </ul>
+            <p>Vitamins are organic compounds that are essential for various bodily functions, including energy production, immune function, and maintaining healthy skin, eyes, and bones.</p>
         </div>
 
         <div class="section">
             <h2>Rich Vitamin Sources</h2>
             <div class="food-list">
-                <div class="food-item">Vitamin A: Sweet potatoes, carrots, dark leafy greens</div>
-                <div class="food-item">Vitamin D: Fatty fish, fortified dairy products</div>
-                <div class="food-item">Vitamin E: Nuts, seeds, vegetable oils</div>
-                <div class="food-item">Vitamin K: Leafy greens, fermented foods</div>
-                <div class="food-item">B vitamins: Eggs, meat, fish, poultry, whole grains</div>
+                <div class="food-item">Bananas (Vitamin C)</div>
+                <div class="food-item">Egg Yolks (Vitamin D)</div>
+                <div class="food-item">Salmon (Vitamin B12)</div>
+                <div class="food-item">Sweet Potatoes (Vitamin A)</div>
+                <div class="food-item">Avocados (Vitamin E)</div>
+                <div class="food-item">Mushrooms (Vitamin D)</div>
+                <div class="food-item">Spinach (Folate)</div>
             </div>
         </div>
 
         <div class="section">
             <h2>Daily Recommended Intake</h2>
             <div class="recommendation">
-                <p>Each vitamin has its own daily recommended intake, which varies based on factors such as age, sex, and overall health.</p>
+                <h3>For Men:</h3>
+                <p>90 micrograms per day for the average sedentary man</p>
+                <h3>For Women:</h3>
+                <p>75 micrograms per day for the average sedentary woman</p>
+                <p><em>Note: Pregnant women may need more vitamins based on their individual needs.</em></p>
             </div>
         </div>
 
@@ -114,26 +109,32 @@
             <h2>Effects of Vitamin Deficiency</h2>
             <div class="warning">
                 <ul>
-                    <li>Vitamin A deficiency: Night blindness, impaired immune function</li>
-                    <li>Vitamin D deficiency: Rickets, osteomalacia</li>
-                    <li>Biotin deficiency: Skin rash, hair loss, neurological symptoms</li>
-                    <li>Folate deficiency: Anemia, birth defects</li>
+                    <li>Scurvy (Vitamin C deficiency)</li>
+                    <li>Rickets (Vitamin D deficiency)</li>
+                    <li>Anemia (Vitamin B12 deficiency)</li>
+                    <li>Brittle nails and hair loss (Vitamin A deficiency)</li>
+                    <li>Weakened immune system</li>
+                    <li>Growth issues in children</li>
                 </ul>
             </div>
         </div>
 
         <div class="section">
-            <h2>Effects of Excessive Vitamin Consumption</h2>
+            <h2>Effects of Excessive Vitamins</h2>
             <div class="warning">
                 <ul>
-                    <li>Vitamin A toxicity: Headaches, blurred vision, liver damage</li>
-                    <li>Vitamin D toxicity: Hypercalcemia, nausea, vomiting</li>
-                    <li>Biotin deficiency: Skin rash, hair loss, neurological symptoms</li>
+                    <li>Vitamin A toxicity: Headaches, dizziness, nausea</li>
+                    <li>Vitamin D toxicity: Kidney damage, heart problems</li>
+                    <li>Vitamin B6 toxicity: Numbness in hands and feet, neurological symptoms</li>
+                    <li>Vitamin C toxicity: Diarrhea, stomach cramps</li>
+                    <li>Increased risk of kidney stones with high intake of certain vitamins</li>
+                    <li>Interference with medication absorption</li>
                 </ul>
             </div>
         </div>
 
         <%
+        // You can add dynamic content here, such as pulling vitamin information from a database
         String lastUpdated = new java.text.SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date());
         %>
 

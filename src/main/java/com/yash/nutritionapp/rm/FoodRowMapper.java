@@ -15,12 +15,13 @@ public class FoodRowMapper implements RowMapper<Food> {
         // Map both columns from the result set
         f.setFoodId(rs.getInt("foodId"));
         f.setName(rs.getString("name"));
-        f.setCarbohydrate(rs.getString("carbohydrate"));
-        f.setProtein(rs.getString("protein"));
-        f.setFat(rs.getString("fat"));
-        f.setIron(rs.getString("iron"));
-        f.setMagnesium(rs.getString("magnesium"));
-        f.setPhosphorous(rs.getString("phosphorous"));
+        f.setCarbohydrate(rs.getFloat("carbohydrate"));
+        f.setProtein(rs.getFloat("protein"));
+        f.setFat(rs.getFloat("fat"));
+        f.setIron(rs.getFloat("iron"));
+        f.setMagnesium(rs.getFloat("magnesium"));
+        f.setPhosphorous(rs.getFloat("phosphorous"));
+        f.setCalories(rs.getInt("calories"));
         f.setCategory(rs.getString("category"));
         f.setFoodImage(rs.getString("foodImage"));
 

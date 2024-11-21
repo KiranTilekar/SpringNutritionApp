@@ -111,7 +111,7 @@
                 border-radius: 10px;
                 margin-bottom: 30px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-                max-width: 800px;
+                max-width: 100%;
             }
 
             .user-info .welcome {
@@ -150,11 +150,11 @@
 
             .meal-section {
                 background: rgba(255, 255, 255, 0.9);
-                padding: 20px;
+                padding: 30px;
                 border-radius: 10px;
                 margin-top: 20px;
                 text-align: center;
-                max-width: 800px;
+                max-width: 100%;
             }
 
             .meal-section p {
@@ -216,38 +216,41 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <a href="recommendMeals"><i class="fas fa-utensils"></i> <span>Get Customized Meal</span></a>
+            <a href="recommendedMeal"><i class="fas fa-utensils"></i> <span>Get Customized Meal</span></a>
             <a href="makeYourMeal"><i class="fas fa-utensils"></i> <span>Make Your Meal</span></a>
             <a href="seeMeal"><i class="fas fa-clipboard-list"></i> <span>See Your Meal</span></a>
         </div>
 
-        <div class="dashboard-content">
 
-            <div class="user-info">
-                <% User user = (User) session.getAttribute("user"); %>
-                <div class="welcome">
-                    Welcome, <strong><%= user.getName() %></strong>
-                </div>
-                <div class="bmi-info">
-                    <div class="bmi-card">
-                        <label>Your BMI</label>
-                        <div class="value"><%= String.format("%.1f", user.getBMI()) %></div>
-                    </div>
-                    <div class="bmi-card">
-                        <label>Category</label>
-                        <div class="value"><%= user.getCategory() %></div>
-                    </div>
-                </div>
-            </div>
+                <div class="dashboard-content">
+                   <div class="user-info">
+                      <% User user = (User) session.getAttribute("user"); %>
+                      <div class="welcome">
+                          Welcome, <strong><%= user.getName() %></strong>
+                      </div>
+                      <div class="bmi-info">
+                          <div class="bmi-card">
+                              <label>Your BMI</label>
+                              <div class="value"><%= String.format("%.1f", user.getBMI()) %></div>
+                          </div>
+                          <div class="bmi-card">
+                              <label>Category</label>
+                              <div class="value"><%= user.getCategory() %></div>
+                          </div>
+                      </div>
+                   </div>
 
-            <div class="meal-section">
-                <p>Here is your meal according to your category</p>
-                <a href="recommendedMeal" class="meal-button">
-                    <i class="fas fa-utensils"></i>
-                    See Meal
-                </a>
-            </div>
-        </div>
+                   <div class="meal-section">
+                       <p>Here is your meal according to your category</p>
+                       <a href="recommendedMeal" class="meal-button">
+                           <i class="fas fa-utensils"></i>
+                           See Meal
+                       </a>
+                   </div>
+               </div>
+
+
+
     </body>
 
     <%-- Footer --%>

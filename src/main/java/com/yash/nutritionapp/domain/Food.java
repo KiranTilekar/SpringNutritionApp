@@ -5,18 +5,29 @@ public class Food {
     private Integer foodId;
     private Integer userId;
     private String name;
-    private String carbohydrate;
-    private String protein;
-    private String fat;
-    private String iron;
-    private String magnesium;
-    private String phosphorous;
+    private float carbohydrate;
+    private float protein;
+    private float fat;
+    private float iron;
+    private float magnesium;
+    private float phosphorous;
+    private Integer calories;
     private String category;
     private String foodImage;
 
 
-    public Food() {
 
+    public Food() {
+    }
+
+    public Food(float carbohydrate, float protein, float fat, float iron, float magnesium, float phosphorous, Integer calories) {
+        this.carbohydrate = carbohydrate;
+        this.protein = protein;
+        this.fat = fat;
+        this.iron = iron;
+        this.magnesium = magnesium;
+        this.phosphorous = phosphorous;
+        this.calories = calories;
     }
 
     public Integer getFoodId() {
@@ -43,54 +54,60 @@ public class Food {
         this.name = name;
     }
 
-    public String getCarbohydrate() {
+    public float getCarbohydrate() {
         return carbohydrate;
     }
 
-    public void setCarbohydrate(String carbohydrate) {
+    public void setCarbohydrate(float carbohydrate) {
         this.carbohydrate = carbohydrate;
     }
 
-    public String getProtein() {
+    public float getProtein() {
         return protein;
     }
 
-    public void setProtein(String protein) {
+    public void setProtein(float protein) {
         this.protein = protein;
     }
 
-    public String getFat() {
+    public float getFat() {
         return fat;
     }
 
-    public void setFat(String fat) {
+    public void setFat(float fat) {
         this.fat = fat;
     }
 
-    public String getIron() {
+    public float getIron() {
         return iron;
     }
 
-    public void setIron(String iron) {
+    public void setIron(float iron) {
         this.iron = iron;
     }
 
-    public String getMagnesium() {
+    public float getMagnesium() {
         return magnesium;
     }
 
-    public void setMagnesium(String magnesium) {
+    public void setMagnesium(float magnesium) {
         this.magnesium = magnesium;
     }
 
-    public String getPhosphorous() {
-
+    public float getPhosphorous() {
         return phosphorous;
     }
 
-    public void setPhosphorous(String phosphorous) {
-
+    public void setPhosphorous(float phosphorous) {
         this.phosphorous = phosphorous;
+    }
+
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
     }
 
     public String getCategory() {
@@ -121,6 +138,7 @@ public class Food {
                 ", iron='" + iron + '\'' +
                 ", magnesium='" + magnesium + '\'' +
                 ", phosphorous='" + phosphorous + '\'' +
+                ", calories='" + calories + '\'' +
                 ", category='" + category + '\'' +
                 ", foodImage='" + foodImage + '\'' +
                 '}';

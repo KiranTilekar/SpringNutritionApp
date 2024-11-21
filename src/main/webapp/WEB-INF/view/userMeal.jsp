@@ -141,6 +141,7 @@
                 </div>
             </c:forEach>
         </div>
+
     </div>
 
     <%-- Footer --%>

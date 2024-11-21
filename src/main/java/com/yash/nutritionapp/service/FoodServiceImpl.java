@@ -92,13 +92,36 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
 
     @Override
     public List<Food> getRecommendedMeal(String category) {
-        System.out.println("category in sql = " + category);
         String sql = "SELECT * FROM food WHERE category = '" + category + "'";
-        System.out.println("sql query: " + sql);
-        List<Food> food= getJdbcTemplate().query(sql, new FoodRowMapper(), category);
-        System.out.println("sql query1: " + sql);
-        System.out.println("Food List = " + food);
+        List<Food> food= getJdbcTemplate().query(sql, new FoodRowMapper());
         return food;
+    }
+
+    @Override
+    public Food getNutritionSummary(List<Food> recommendedMeal) {
+
+        System.out.println("inside getNutritionSummary" + recommendedMeal);
+        float carbohydrate = 0;
+        float protein = 0;
+        float fat = 0;
+        float iron = 0;
+        float magnesium = 0;
+        float phosphorous = 0;
+        Integer calories = 0;
+
+        for(Food f: recommendedMeal) {
+            carbohydrate += f.getCarbohydrate();
+            protein += f.getProtein();
+            fat += f.getFat();
+            iron += f.getIron();
+            magnesium += f.getMagnesium();
+            phosphorous += f.getPhosphorous();
+            calories += f.getCalories();
+        }
+
+        Food foodSummary = new Food(carbohydrate, protein, fat, iron, magnesium, phosphorous, calories);
+        System.out.println("total food nutrient: " + foodSummary);
+        return foodSummary;
     }
 
 

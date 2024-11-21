@@ -11,7 +11,18 @@
         <link href="static/css/style.css" rel="stylesheet" type="text/css"/>
         <style>
             body {
-                text-align:center;
+                font-family: Arial, sans-serif;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                background-color: #f0f8f0;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f0f8f0'/%3E%3Cg fill='%234CAF50' opacity='0.1'%3E%3Ccircle cx='200' cy='150' r='30'/%3E%3Cpath d='M380 150 C 390 120, 410 120, 420 150 C 430 180, 450 180, 460 150 L 460 200 L 380 200 Z'/%3E%3Cpath d='M180 300 Q 200 250, 220 300 L 220 350 L 180 350 Z'/%3E%3Cpath d='M500 350 C 520 320, 540 320, 560 350 L 560 400 L 500 400 Z'/%3E%3Cpath d='M300 450 Q 320 400, 340 450 L 340 500 L 300 500 Z'/%3E%3C/g%3E%3Cg fill='%23388E3C' opacity='0.1'%3E%3Ccircle cx='600' cy='200' r='25'/%3E%3Cpath d='M100 400 C 110 370, 130 370, 140 400 C 150 430, 170 430, 180 400 L 180 450 L 100 450 Z'/%3E%3Cpath d='M650 450 Q 670 400, 690 450 L 690 500 L 650 500 Z'/%3E%3C/g%3E%3C/svg%3E");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
             }
 
             .main-container {
@@ -85,18 +96,19 @@
         </script>
     </head>
     <body>
+        <jsp:include page="include/menu.jsp"/>
         <div class="main-container">
             <table class="layout-table">
                 <tr>
                     <td class="header-cell">
                         <%-- Header --%>
-                        <jsp:include page="include/header.jsp"/>
+
                     </td>
                 </tr>
                 <tr>
                     <td class="menu-cell">
                         <%-- Menu --%>
-                        <jsp:include page="include/menu.jsp"/>
+
                     </td>
                 </tr>
                 <tr>
@@ -140,10 +152,11 @@
                 <tr>
                     <td class="footer-cell">
                         <%-- Footer --%>
-                        <jsp:include page="include/footer.jsp"/>
+
                     </td>
                 </tr>
             </table>
         </div>
+        <jsp:include page="include/footer.jsp"/>
     </body>
 </html>

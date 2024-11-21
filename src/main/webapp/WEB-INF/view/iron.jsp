@@ -78,26 +78,31 @@
 
         <div class="section">
             <h2>What is Iron?</h2>
-            <p>Iron is a crucial mineral essential for transporting oxygen in the body and supporting normal growth and development.</p>
+            <p>Iron is a macronutrient that is essential for building muscle mass, repairing tissue, making enzymes and hormones, and maintaining various body functions.</p>
         </div>
 
         <div class="section">
             <h2>Rich Iron Sources</h2>
             <div class="food-list">
-                <div class="food-item">Red meat</div>
+                <div class="food-item">Red Meat</div>
                 <div class="food-item">Poultry</div>
                 <div class="food-item">Fish</div>
+                <div class="food-item">Fortified Cereals</div>
                 <div class="food-item">Legumes</div>
-                <div class="food-item">Fortified cereals</div>
-                <div class="food-item">Eggs</div>
-                <div class="food-item">Tofu</div>
+                <div class="food-item">Spinach</div>
+                <div class="food-item">Beetroot</div>
+                <div class="food-item">Clams</div>
             </div>
         </div>
 
         <div class="section">
             <h2>Daily Recommended Intake</h2>
             <div class="recommendation">
-                <p>The recommended dietary allowance (RDA) for iron varies by age and sex. For example, adult men aged 19-50 years require 8 mg/day, while adult women aged 19-50 years require 18 mg/day.</p>
+                <h3>For Men:</h3>
+                <p>8 milligrams per day for the average sedentary man</p>
+                <h3>For Women:</h3>
+                <p>18 milligrams per day for the average sedentary woman</p>
+                <p><em>Note: Athletes and active individuals may need more iron based on their activity level.</em></p>
             </div>
         </div>
 
@@ -105,33 +110,22 @@
             <h2>Effects of Iron Deficiency</h2>
             <div class="warning">
                 <ul>
-                    <li>Anemia (low red blood cell count)</li>
-                    <li>Pale skin color</li>
-                    <li>Weakened immune system</li>
-                    <li>Fatigue and weakness</li>
+                    <li>Anemia and fatigue</li>
                     <li>Shortness of breath</li>
+                    <li>Headaches and weakness</li>
+                    <li>Pale skin</li>
+                    <li>Cold hands and feet</li>
+                    <li>Poor appetite</li>
                 </ul>
             </div>
         </div>
 
         <div class="section">
-            <h2>Effects of Excessive Iron Consumption</h2>
+            <h2>Effects of Iron Overdose</h2>
             <div class="warning">
                 <ul>
-                    <li>Iron overload (hemochromatosis)</li>
-                    <li>Liver damage</li>
-                    <li>Heart problems</li>
-                    <li>Diarrhea</li>
+                    <li>Stomach pain and nausea</li>
+                    <li>Vomiting blood (hematemesis)</li>
                 </ul>
-            </div>
         </div>
-
-        <%
-        String lastUpdated = new java.text.SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date());
-        %>
-
     </div>
-
-    <jsp:include page="include/footer.jsp" />
-</body>
-</html>

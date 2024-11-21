@@ -42,14 +42,10 @@
         </style>
     </head>
     <body>
+        <jsp:include page="include/menu.jsp"/>
         <div class="main-container">
             <table class="layout-table">
-                <tr>
-                    <td class="menu-cell">
-                        <%-- Menu --%>
-                        <jsp:include page="include/menu.jsp"/>
-                    </td>
-                </tr>
+
                 <tr>
                     <td class="content-cell">
                         <%-- Page Content Area--%>
@@ -59,13 +55,12 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td class="footer-cell">
-                        <%-- Footer --%>
-                        <jsp:include page="include/footer.jsp"/>
-                    </td>
-                </tr>
+
+
+
+
             </table>
-        </div>
+        </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <jsp:include page="include/footer.jsp"/>
     </body>
 </html>

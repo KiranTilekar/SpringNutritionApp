@@ -24,4 +24,6 @@ public interface FoodService {
     public void setFoodById(Integer foodId, Integer userId);
 
     public List<Food> getRecommendedMeal(String category);
+
+    Food getNutritionSummary(List<Food> recommendedMeal);
 }

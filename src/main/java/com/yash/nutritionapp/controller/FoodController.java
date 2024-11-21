@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class FoodController {
@@ -69,7 +70,10 @@ public class FoodController {
     @RequestMapping(value="/seeMeal")
     public String userMealList(Model m, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
-        m.addAttribute("mealList", foodService.findUserMeal(userId));
+        List<Food> mealList = foodService.findUserMeal(userId);
+        System.out.println("mealList: " + mealList);
+        m.addAttribute("mealList", mealList);
+//        m.addAttribute("totalNutrient", foodService.getNutritionSummary(mealList));
         return "userMeal";
     }
 
@@ -103,15 +107,15 @@ public class FoodController {
         Integer userId = (Integer) session.getAttribute("userId");
         foodService.setFoodById(foodId,userId);
         return "redirect:makeYourMeal?ac=sv";
-//        return "demo";
     }
 
     @RequestMapping(value="/recommendedMeal")
     public String getFoodById(Model m, HttpSession session) {
         String category = session.getAttribute("category").toString();
-        System.out.println("category = " + category);
-        m.addAttribute("recommendedMeal", foodService.getRecommendedMeal(category));
-        return "customMeal";
+        List<Food> recommendedMeal = foodService.getRecommendedMeal(category);
+        m.addAttribute("recommendedMeal", recommendedMeal);
+        m.addAttribute("nutritionSummary", foodService.getNutritionSummary(recommendedMeal));
+        return "recommendedMeal";
     }
 
     @RequestMapping(value="/learnMore")
