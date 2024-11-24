@@ -39,7 +39,7 @@ public class UserController {
 
             if(loggedInUser == null) {
                 m.addAttribute("err", "Login failed enter valid credentials");
-                return "index1";
+                return "login_form";
             }
             else {
                 //success
@@ -132,6 +132,11 @@ public class UserController {
             e.printStackTrace();
             return "ERROR: Unable to Change Status";
         }
+    }
+
+    @RequestMapping(value = "/bmiCalculator")
+    public String bmiCalculator() {
+        return "bmiCalculator"; // /WEB-INF/view/index.jsp
     }
 
     private void addUserInSession(User u, HttpSession session) {

@@ -25,30 +25,31 @@
             });
         });
 
-        function validateName() {
-            const name = document.getElementById("name").value;
+       function validateName() {
+           const nameInput = document.getElementById("name");
+           const name = nameInput.value;
+           const nameValidationElement = document.getElementById("name-validation");
 
-            if (/\d/.test(name)) {
-                document.getElementById("name-validation").innerHTML = "Username do not contain digit";
-            }
-            else if (name.length > 20) {
-                document.getElementById("name-validation").innerHTML = "Please enter username with maximum 20 characters";
-            }
-            else {
-                document.getElementById("name-validation").innerHTML = "";
-            }
-        }
+           // Remove any digits from the input
+           nameInput.value = name.replace(/\d/g, '');
 
-        document.getElementById("name").addEventListener("keypress", function(event) {
-            if (/[0-9]/.test(event.key)) {
-                event.preventDefault();
-                document.getElementById("name-validation").innerHTML = "Numbers are not allowed";
+           // Regular expression to check if the name contains only alphabets (including spaces)
+           const alphabetPattern = /^[A-Za-z\s]+$/;
 
-                setTimeout(() => {
-                    document.getElementById("name-validation").innerHTML = "";
-                }, 2000);
-            }
-        });
+           if (name.length === 0) {
+               nameValidationElement.innerHTML = "Name cannot be empty";
+           }
+           else if (name.length > 20) {
+               nameValidationElement.innerHTML = "Name must be maximum 20 characters long";
+           }
+           else if (!alphabetPattern.test(nameInput.value)) {
+               nameValidationElement.innerHTML = "Name can only contain alphabets, spaces and numbers";
+           }
+           else {
+               nameValidationElement.innerHTML = "";
+           }
+       }
+
 
         function validateEmail () {
             const email = document.getElementById("email").value;
@@ -94,6 +95,13 @@
         	    	document.getElementById("password-validation").innerHTML = "";
         	    }
         	}
+
+        	$(document).ready(function() {
+                $("#name").on('input', function() {
+                    // Remove digits and special characters
+                    this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+                });
+            });
     </script>
 
     <style>

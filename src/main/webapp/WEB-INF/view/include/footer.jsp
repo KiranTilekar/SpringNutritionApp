@@ -9,9 +9,10 @@
                 color: white;
                 text-align: center;
                 padding: 1rem;
-                margin-top: auto;
                 bottom: 0px;
                 width: 100%;
+                position: fixed;
+                margin-bottom: 0;
     }
 
         .copyright-link {

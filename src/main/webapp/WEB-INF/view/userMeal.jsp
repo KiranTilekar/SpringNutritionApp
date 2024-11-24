@@ -4,6 +4,9 @@
 <%@ page isELIgnored="false" %>
 
 <style>
+    * {
+        padding: 0;
+    }
     .meal-list-container {
         max-width: 1200px;
         margin: 0 auto;

@@ -33,11 +33,52 @@
                 margin-left: 60px;
                 padding: 40px;
                 transition: 0.5s;
-                min-height: calc(100vh - 80px);
             }
 
             .dashboard-content.expanded {
                 margin-left: 250px;
+            }
+
+            .welcome-message {
+                font-size: 1.8em;
+                color: #333;
+                margin-bottom: 30px;
+                font-weight: 500;
+            }
+
+            .welcome-message strong {
+                color: #4CAF50;
+            }
+
+            .stats-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            .stat-tile {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transition: transform 0.3s ease;
+            }
+
+
+
+            .stat-tile label {
+                color: #666;
+                font-size: 1em;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .stat-tile .value {
+                font-size: 1.4em;
+                font-weight: bold;
+                color: #4CAF50;
             }
 
             .sidebar {
@@ -45,12 +86,12 @@
                 width: 60px;
                 position: fixed;
                 z-index: 1;
-                top: 0;
+                top: 60px;
                 left: 0;
                 background-color: #ffffff;
                 overflow-x: hidden;
                 transition: 0.5s;
-                padding-top: 60px;
+                padding-top: 15px;
                 box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             }
 
@@ -105,52 +146,9 @@
                 background-color: #388E3C;
             }
 
-            .user-info {
-                background: rgba(255, 255, 255, 0.9);
-                padding: 20px;
-                border-radius: 10px;
-                margin-bottom: 30px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-                max-width: 100%;
-            }
-
-            .user-info .welcome {
-                font-size: 1.4em;
-                color: #333;
-                margin-bottom: 15px;
-            }
-
-            .user-info .bmi-info {
-                display: flex;
-                gap: 20px;
-                align-items: center;
-                margin-top: 10px;
-            }
-
-            .bmi-card {
-                background: white;
-                padding: 15px;
-                border-radius: 8px;
-                text-align: center;
-                flex: 1;
-            }
-
-            .bmi-card label {
-                color: #666;
-                font-size: 0.9em;
-                display: block;
-                margin-bottom: 5px;
-            }
-
-            .bmi-card .value {
-                font-size: 1.2em;
-                font-weight: bold;
-                color: #4CAF50;
-            }
-
             .meal-section {
                 background: rgba(255, 255, 255, 0.9);
-                padding: 30px;
+                padding: 25px;
                 border-radius: 10px;
                 margin-top: 20px;
                 text-align: center;
@@ -160,7 +158,8 @@
             .meal-section p {
                 font-size: 1.2em;
                 color: #555;
-                margin-bottom: 20px;
+                margin-bottom: 30px;
+                margin-top: 5px;
             }
 
             .meal-button {
@@ -219,38 +218,35 @@
             <a href="recommendedMeal"><i class="fas fa-utensils"></i> <span>Get Customized Meal</span></a>
             <a href="makeYourMeal"><i class="fas fa-utensils"></i> <span>Make Your Meal</span></a>
             <a href="seeMeal"><i class="fas fa-clipboard-list"></i> <span>See Your Meal</span></a>
+            <a href="bmiCalculator" class="calculator-link"><i class="fas fa-calculator"></i> <span>BMI Calculator</span></a>
         </div>
 
 
                 <div class="dashboard-content">
-                   <div class="user-info">
-                      <% User user = (User) session.getAttribute("user"); %>
-                      <div class="welcome">
-                          Welcome, <strong><%= user.getName() %></strong>
-                      </div>
-                      <div class="bmi-info">
-                          <div class="bmi-card">
-                              <label>Your BMI</label>
-                              <div class="value"><%= String.format("%.1f", user.getBMI()) %></div>
-                          </div>
-                          <div class="bmi-card">
-                              <label>Category</label>
-                              <div class="value"><%= user.getCategory() %></div>
-                          </div>
-                      </div>
-                   </div>
+                    <% User user = (User) session.getAttribute("user"); %>
+                    <div class="welcome-message">
+                        Welcome, <strong><%= user.getName() %></strong>
+                    </div>
 
-                   <div class="meal-section">
-                       <p>Here is your meal according to your category</p>
-                       <a href="recommendedMeal" class="meal-button">
-                           <i class="fas fa-utensils"></i>
-                           See Meal
-                       </a>
+                    <div class="stats-container">
+                        <div class="stat-tile">
+                            <label>Your BMI</label>
+                            <div class="value"><%= String.format("%.1f", user.getBMI()) %></div>
+                        </div>
+                        <div class="stat-tile">
+                            <label>Category</label>
+                            <div class="value"><%= user.getCategory() %></div>
+                        </div>
+                </div>
+
+               <div class="meal-section">
+                   <p>Here is your meal according to your category</p>
+                   <a href="recommendedMeal" class="meal-button">
+                       <i class="fas fa-utensils"></i>
+                       See Meal
+                   </a>
                    </div>
                </div>
-
-
-
     </body>
 
     <%-- Footer --%>

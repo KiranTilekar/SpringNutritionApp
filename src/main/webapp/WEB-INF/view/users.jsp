@@ -10,6 +10,7 @@
         <title>User List - Contact Application </title>
         <link href="static/css/style.css" rel="stylesheet" type="text/css"/>
         <style>
+            /* Previous styles remain the same */
             body {
                 font-family: Arial, sans-serif;
                 min-height: 100vh;
@@ -25,6 +26,7 @@
                 padding: 0;
             }
 
+            /* Previous styles remain the same */
             .main-container {
                 width: 90%;
                 margin: 0 auto;
@@ -78,11 +80,102 @@
             .user-list-table tr:nth-child(even) {
                 background-color: #f5f7fa;
             }
+
+            /* New styles for sorting */
+            .sortable {
+                cursor: pointer;
+                position: relative;
+                padding-right: 20px !important;
+            }
+
+            .sort-arrow {
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .sort-arrow::after {
+                content: "↕";
+                opacity: 0.5;
+            }
+
+            .sort-asc::after {
+                content: "↑";
+                opacity: 1;
+            }
+
+            .sort-desc::after {
+                content: "↓";
+                opacity: 1;
+            }
         </style>
 
         <script src="static/js/jquery.js"></script>
 
         <script>
+            $(document).ready(function() {
+                let currentSort = {
+                    column: null,
+                    direction: 'asc'
+                };
+
+                function sortTable(column) {
+                    const table = $('.user-list-table');
+                    const tbody = table.find('tbody');
+                    const rows = tbody.find('tr').toArray();
+
+                    // Reset all arrows
+                    $('.sort-arrow').removeClass('sort-asc sort-desc');
+
+                    // Update sort direction
+                    if (currentSort.column === column) {
+                        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        currentSort.column = column;
+                        currentSort.direction = 'asc';
+                    }
+
+                    // Update arrow
+                    const th = table.find(`th[data-column="${column}"]`);
+                    th.find('.sort-arrow').addClass(currentSort.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+
+                    // Sort rows
+                    rows.sort((a, b) => {
+                        const aValue = $(a).children().eq(getColumnIndex(column)).text();
+                        const bValue = $(b).children().eq(getColumnIndex(column)).text();
+
+                        if (column === 'userId') {
+                            return currentSort.direction === 'asc'
+                                ? parseInt(aValue) - parseInt(bValue)
+                                : parseInt(bValue) - parseInt(aValue);
+                        } else {
+                            return currentSort.direction === 'asc'
+                                ? aValue.localeCompare(bValue)
+                                : bValue.localeCompare(aValue);
+                        }
+                    });
+
+                    tbody.empty().append(rows);
+                }
+
+                function getColumnIndex(column) {
+                    switch(column) {
+                        case 'userId': return 1;
+                        case 'name': return 2;
+                        case 'email': return 3;
+                        case 'loginName': return 4;
+                        default: return 0;
+                    }
+                }
+
+                // Add click handlers
+                $('.sortable').click(function() {
+                    const column = $(this).data('column');
+                    sortTable(column);
+                });
+            });
+
             function changeStatus(uid, lstatus){
                 //alert(userId+", "+loginStatus);
                 $.ajax({
@@ -102,13 +195,11 @@
                 <tr>
                     <td class="header-cell">
                         <%-- Header --%>
-
                     </td>
                 </tr>
                 <tr>
                     <td class="menu-cell">
                         <%-- Menu --%>
-
                     </td>
                 </tr>
                 <tr>
@@ -120,10 +211,10 @@
                                 <thead>
                                     <tr>
                                         <th>SR</th>
-                                        <th>USER ID</th>
-                                        <th>NAME</th>
-                                        <th>EMAIL</th>
-                                        <th>USERNAME</th>
+                                        <th class="sortable" data-column="userId">USER ID<span class="sort-arrow"></span></th>
+                                        <th class="sortable" data-column="name">NAME<span class="sort-arrow"></span></th>
+                                        <th class="sortable" data-column="email">EMAIL<span class="sort-arrow"></span></th>
+                                        <th class="sortable" data-column="loginName">USERNAME<span class="sort-arrow"></span></th>
                                         <th>HEIGHT</th>
                                         <th>WEIGHT</th>
                                         <th>BMI</th>
@@ -152,7 +243,6 @@
                 <tr>
                     <td class="footer-cell">
                         <%-- Footer --%>
-
                     </td>
                 </tr>
             </table>

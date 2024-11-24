@@ -122,7 +122,7 @@
             <nav>
                 <ul>
                     <li><a href="admin_dashboard"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="admin_users"><i class="fas fa-sign-in-alt"></i>User List</a></li>
+                    <li><a href="admin_users"></i>User List</a></li>
                     <li><a href="logout"><i class="fas fa-right-from-bracket"></i>Logout</a></li>
                 </ul>
             </nav>
