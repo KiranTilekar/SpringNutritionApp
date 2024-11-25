@@ -148,16 +148,10 @@
 
             <div class="food-grid">
                 <c:forEach var="f" items="${foodList}">
-                    <c:if test="${f.foodId == 1}"> <s:url var="imgUrl" value="/static/images/rice.jpg" /> </c:if>
-                    <c:if test="${f.foodId == 2}"> <s:url var="imgUrl" value="/static/images/roti.jpg" /> </c:if>
-                    <c:if test="${f.foodId == 3}"> <s:url var="imgUrl" value="/static/images/daal.jpg" /> </c:if>
-                    <c:if test="${f.foodId == 4}"> <s:url var="imgUrl" value="/static/images/bhindi.webp" /> </c:if>
-                    <c:if test="${f.foodId == 5}"> <s:url var="imgUrl" value="/static/images/chicken.JPG" /> </c:if>
-
 
                     <div class="food-tile">
                         <div class="food-image">
-                            <img src="${imgUrl}" alt="${f.name}" class="food-image">
+                                <img src="displayFoodImage/${f.foodId}" alt="${food.name} Image" class="food-image"/>
                         </div>
                         <div class="food-content">
                             <div class="food-name">${f.name}</div>

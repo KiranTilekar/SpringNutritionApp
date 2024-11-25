@@ -1,5 +1,13 @@
 package com.yash.nutritionapp.domain;
 
+import com.sun.scenario.effect.impl.prism.PrImage;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
+import java.sql.Blob;
+
 public class Food {
 
     private Integer foodId;
@@ -13,9 +21,15 @@ public class Food {
     private float phosphorous;
     private Integer calories;
     private String category;
-    private String foodImage;
     private String preference;
 
+//    @Column(name="foodImage")
+//    @Basic(fetch= FetchType.LAZY)
+//
+//    @Lob
+//    private byte[] foodImage;
+
+    private Blob foodImage;
 
     public Food() {
     }
@@ -118,11 +132,20 @@ public class Food {
         this.category = category;
     }
 
-    public String getFoodImage() {
+//    public byte[] getFoodImage() {
+//        return foodImage;
+//    }
+//
+//    public void setFoodImage(byte[] foodImage) {
+//        this.foodImage = foodImage;
+//    }
+
+
+    public Blob getFoodImage() {
         return foodImage;
     }
 
-    public void setFoodImage(String foodImage) {
+    public void setFoodImage(Blob foodImage) {
         this.foodImage = foodImage;
     }
 

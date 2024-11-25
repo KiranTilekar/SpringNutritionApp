@@ -23,8 +23,8 @@ public class FoodRowMapper implements RowMapper<Food> {
         f.setPhosphorous(rs.getFloat("phosphorous"));
         f.setCalories(rs.getInt("calories"));
         f.setCategory(rs.getString("category"));
-        f.setFoodImage(rs.getString("foodImage"));
         f.setPreference(rs.getString("preference"));
+        f.setFoodImage(rs.getBlob("foodImage"));
 
         return f;
     }

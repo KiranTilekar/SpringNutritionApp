@@ -2,6 +2,7 @@ package com.yash.nutritionapp.controller;
 
 import com.yash.nutritionapp.Exception.UserBlockedException;
 import com.yash.nutritionapp.command.LoginCommand;
+import com.yash.nutritionapp.command.TempCommand;
 import com.yash.nutritionapp.command.UserCommand;
 import com.yash.nutritionapp.domain.User;
 import com.yash.nutritionapp.service.UserService;
@@ -23,7 +24,9 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/index"})
     public String index(Model m) {
-        m.addAttribute("command", new LoginCommand());
+        System.out.println("temp command loading...");
+        TempCommand cmd = new TempCommand();
+        m.addAttribute("command", cmd);
         return "index1"; // /WEB-INF/view/index.jsp
     }
 

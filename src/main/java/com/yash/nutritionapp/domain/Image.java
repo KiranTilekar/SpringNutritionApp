@@ -1,4 +1,4 @@
-package com.yash.ngodonation.domain;
+package com.yash.nutritionapp.domain;
 
 import java.sql.Blob;
 

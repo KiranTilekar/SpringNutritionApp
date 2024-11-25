@@ -64,7 +64,7 @@
                         <%-- Page Content Area--%>
                         <div class="admin-dashboard">
                             <h3>Admin Dashboard</h3>
-                            <c:if test="${param.act eq 'added'}">
+                            <c:if test="${param.act eq 'add'}">
                                 <div class="success-message">Food item added successfully!</div>
                             </c:if>
                         </div>

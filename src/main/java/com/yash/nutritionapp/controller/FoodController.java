@@ -3,19 +3,28 @@ package com.yash.nutritionapp.controller;
 import com.yash.nutritionapp.command.FoodCommand;
 import com.yash.nutritionapp.command.UserCommand;
 import com.yash.nutritionapp.domain.Food;
+import com.yash.nutritionapp.domain.Image;
 import com.yash.nutritionapp.domain.User;
 import com.yash.nutritionapp.service.FoodService;
+import com.yash.nutritionapp.service.ImageService;
 import com.yash.nutritionapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -24,12 +33,34 @@ public class FoodController {
     @Autowired
     private FoodService foodService;
 
+    @Autowired
+    private ImageService imageService;
+
     @RequestMapping(value="/makeYourMeal")
     public String foodForm(Model m) {
         FoodCommand cmd = new FoodCommand();
         m.addAttribute("command", cmd);
         m.addAttribute("foodList", foodService.getFoodList());
+        System.out.println("food list: " + foodService.getFoodList());
         return "food_form";
+    }
+
+    @GetMapping("/displayFoodImage/{foodId}")
+    public void showFoodImage(@PathVariable int foodId,
+                              HttpServletResponse response) throws IOException, SQLException {
+        Food food = foodService.getFoodById(foodId);
+        System.out.println("food" + food);
+        if (food != null && food.getFoodImage() != null) {
+            Blob imageBlob = food.getFoodImage();
+
+            response.setContentType("image/jpeg");
+            ServletOutputStream outputStream = response.getOutputStream();
+
+            byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
+            outputStream.write(imageBytes);
+            outputStream.flush();
+            outputStream.close();
+        }
     }
 
     @RequestMapping(value = "/user_edit_contact")
@@ -133,16 +164,17 @@ public class FoodController {
         return "uploadImagePage";
     }
 
-    @RequestMapping(value = "/addFood")
-    public String addFood(@ModelAttribute("command") FoodCommand cmd, Model m) {
+    @PostMapping(value = "/addFood")
+    public String addFood(@ModelAttribute("command") FoodCommand cmd,  @RequestParam("file") MultipartFile file) {
+        Food food = cmd.getFood();
         try {
-            Food food = cmd.getFood();
+            food.setFoodImage(new SerialBlob(file.getBytes()));
+            System.out.println(food);
             foodService.addFood(food);
-            return "redirect:admin_dashboard?act=added"; //Admin dashboard
-        } catch (DuplicateKeyException e) {
-            e.printStackTrace();
-            m.addAttribute("err", "Food already exist.");
-            return "uploadImagePage";//JSP
+            return "redirect:admin_dashboard?act=add"; //Admin dashboard
+
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

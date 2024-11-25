@@ -1,6 +1,6 @@
 package com.yash.nutritionapp.dao;
 
-import com.yash.ngodonation.domain.Image;
+import com.yash.nutritionapp.domain.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

@@ -133,6 +133,7 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
 
     @Override
     public void addFood(Food f) {
+        System.out.println("inside food service impl ");
         String sql = "INSERT INTO Food(name, carbohydrate, protein, fat, iron, magnesium, phosphorous, calories, category, foodImage, preference)"
                 + "VALUES(:name, :carbohydrate, :protein, :fat, :iron, :magnesium, :phosphorous, :calories, :category, :foodImage, :preference)";
 
