@@ -14,6 +14,9 @@ public class User {
     private float BMI;
     private Integer role;
     private String category;
+    private String preference;
+
+
 
 
     public User() {
@@ -100,6 +103,14 @@ public class User {
         this.category = category;
     }
 
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -113,6 +124,7 @@ public class User {
                 ", BMI=" + BMI +
                 ", role=" + role +
                 ", category='" + category + '\'' +
+                ", preference='" + preference + '\'' +
                 '}';
     }
 }

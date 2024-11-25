@@ -24,6 +24,7 @@ public class FoodRowMapper implements RowMapper<Food> {
         f.setCalories(rs.getInt("calories"));
         f.setCategory(rs.getString("category"));
         f.setFoodImage(rs.getString("foodImage"));
+        f.setPreference(rs.getString("preference"));
 
         return f;
     }

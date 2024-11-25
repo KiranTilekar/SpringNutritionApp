@@ -20,6 +20,7 @@ public class UserRowMapper implements RowMapper<User> {
         u.setBMI(rs.getFloat("BMI"));
         u.setRole(rs.getInt("role"));
         u.setCategory(rs.getString("category"));
+        u.setPreference(rs.getString("preference"));
 
         return u;
     }

@@ -19,8 +19,8 @@ public class UserDAOImpl extends BaseDAO implements UserDAO{
 
     @Override
     public void save(User u) {
-        String sql = "INSERT INTO USER(name, email, password, loginName, height, weight, BMI, role, category)"
-                + "VALUES(:name, :email, :password, :loginName, :height, :weight, :BMI, :role, :category)";
+        String sql = "INSERT INTO USER(name, email, password, loginName, height, weight, BMI, role, category, preference)"
+                + "VALUES(:name, :email, :password, :loginName, :height, :weight, :BMI, :role, :category, :preference)";
 
         float BMI = u.getWeight()/(u.getHeight() * u.getHeight());
 
@@ -33,6 +33,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO{
         m.put("weight", u.getWeight());
         m.put("BMI", BMI);
         m.put("role", u.getRole());
+        m.put("preference", u.getPreference());
 
         String category;
         if(BMI < 18.5) {

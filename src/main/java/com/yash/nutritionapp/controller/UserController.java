@@ -143,6 +143,7 @@ public class UserController {
         session.setAttribute("user", u);
         session.setAttribute("userId", u.getUserId());
         session.setAttribute("role", u.getRole());
+        session.setAttribute("preference", u.getPreference());
         session.setAttribute("category", u.getCategory());
     }
 }

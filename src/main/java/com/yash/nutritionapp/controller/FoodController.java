@@ -1,9 +1,13 @@
 package com.yash.nutritionapp.controller;
 
 import com.yash.nutritionapp.command.FoodCommand;
+import com.yash.nutritionapp.command.UserCommand;
 import com.yash.nutritionapp.domain.Food;
+import com.yash.nutritionapp.domain.User;
 import com.yash.nutritionapp.service.FoodService;
+import com.yash.nutritionapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -112,10 +116,34 @@ public class FoodController {
     @RequestMapping(value="/recommendedMeal")
     public String getFoodById(Model m, HttpSession session) {
         String category = session.getAttribute("category").toString();
-        List<Food> recommendedMeal = foodService.getRecommendedMeal(category);
+        String preference = session.getAttribute("preference").toString();
+        System.out.println("preference"  + preference);
+        List<Food> recommendedMeal = foodService.getRecommendedMeal(category, preference);
         m.addAttribute("recommendedMeal", recommendedMeal);
         m.addAttribute("nutritionSummary", foodService.getNutritionSummary(recommendedMeal));
         return "recommendedMeal";
+    }
+
+    @RequestMapping(value = "/addFoodForm")
+    public String addFoodForm(Model m) {
+        System.out.println("inside addFoodForm");
+        FoodCommand foodCommand = new FoodCommand();
+//        foodCommand.setFood(new Food());
+        m.addAttribute("command", foodCommand);
+        return "uploadImagePage";
+    }
+
+    @RequestMapping(value = "/addFood")
+    public String addFood(@ModelAttribute("command") FoodCommand cmd, Model m) {
+        try {
+            Food food = cmd.getFood();
+            foodService.addFood(food);
+            return "redirect:admin_dashboard?act=added"; //Admin dashboard
+        } catch (DuplicateKeyException e) {
+            e.printStackTrace();
+            m.addAttribute("err", "Food already exist.");
+            return "uploadImagePage";//JSP
+        }
     }
 
     @RequestMapping(value="/learnMore")

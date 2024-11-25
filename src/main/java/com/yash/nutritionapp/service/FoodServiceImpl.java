@@ -91,9 +91,16 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
     }
 
     @Override
-    public List<Food> getRecommendedMeal(String category) {
-        String sql = "SELECT * FROM food WHERE category = '" + category + "'";
-        List<Food> food= getJdbcTemplate().query(sql, new FoodRowMapper());
+    public List<Food> getRecommendedMeal(String category, String preference) {
+        String sql;
+        System.out.println(category + preference);
+        if(Objects.equals(preference, "Veg")) {
+            sql = "SELECT * FROM food WHERE category = '" + category + "' and preference = 'Veg'";
+            System.out.println();
+        } else {
+            sql = "SELECT * FROM food WHERE category = '" + category + "'";
+        }
+        List<Food> food = getJdbcTemplate().query(sql, new FoodRowMapper());
         return food;
     }
 
@@ -122,6 +129,31 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
         Food foodSummary = new Food(carbohydrate, protein, fat, iron, magnesium, phosphorous, calories);
         System.out.println("total food nutrient: " + foodSummary);
         return foodSummary;
+    }
+
+    @Override
+    public void addFood(Food f) {
+        String sql = "INSERT INTO Food(name, carbohydrate, protein, fat, iron, magnesium, phosphorous, calories, category, foodImage, preference)"
+                + "VALUES(:name, :carbohydrate, :protein, :fat, :iron, :magnesium, :phosphorous, :calories, :category, :foodImage, :preference)";
+
+        Map m = new HashMap();
+        m.put("name", f.getName());
+        m.put("carbohydrate", f.getCarbohydrate());
+        m.put("protein", f.getProtein());
+        m.put("fat", f.getFat());
+        m.put("iron", f.getIron());
+        m.put("magnesium", f.getMagnesium());
+        m.put("phosphorous", f.getPhosphorous());
+        m.put("calories", f.getCalories());
+        m.put("category", f.getCategory());
+        m.put("foodImage", f.getFoodImage());
+        m.put("preference", f.getPreference());
+
+        KeyHolder kh = new GeneratedKeyHolder(); // bind auto-incremented value
+        SqlParameterSource ps = new MapSqlParameterSource(m);
+        super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
+        Integer foodId = kh.getKey().intValue();
+        f.setUserId(foodId);
     }
 
 

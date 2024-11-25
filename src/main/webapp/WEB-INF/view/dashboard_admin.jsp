@@ -39,11 +39,24 @@
                 color: #333;
                 margin-top: 0;
             }
+
+            .success {
+                background-color: #d4edda;
+                color: #155724;
+                padding: 15px;
+                border-radius: 6px;
+                margin: 20px 0;
+                text-align: center;
+                font-weight: 500;
+            }
         </style>
     </head>
     <body>
         <jsp:include page="include/menu.jsp"/>
         <div class="main-container">
+
+
+
             <table class="layout-table">
 
                 <tr>
@@ -51,16 +64,13 @@
                         <%-- Page Content Area--%>
                         <div class="admin-dashboard">
                             <h3>Admin Dashboard</h3>
-
+                            <c:if test="${param.act eq 'added'}">
+                                <div class="success-message">Food item added successfully!</div>
+                            </c:if>
                         </div>
                     </td>
                 </tr>
-
-
-
-
             </table>
-        </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <jsp:include page="include/footer.jsp"/>
     </body>
 </html>

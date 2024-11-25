@@ -14,7 +14,7 @@ public class Food {
     private Integer calories;
     private String category;
     private String foodImage;
-
+    private String preference;
 
 
     public Food() {
@@ -126,21 +126,30 @@ public class Food {
         this.foodImage = foodImage;
     }
 
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
+    }
+
     @Override
     public String toString() {
         return "Food{" +
                 "foodId=" + foodId +
                 ", userId=" + userId +
                 ", name='" + name + '\'' +
-                ", carbohydrate='" + carbohydrate + '\'' +
-                ", protein='" + protein + '\'' +
-                ", fat='" + fat + '\'' +
-                ", iron='" + iron + '\'' +
-                ", magnesium='" + magnesium + '\'' +
-                ", phosphorous='" + phosphorous + '\'' +
-                ", calories='" + calories + '\'' +
+                ", carbohydrate=" + carbohydrate +
+                ", protein=" + protein +
+                ", fat=" + fat +
+                ", iron=" + iron +
+                ", magnesium=" + magnesium +
+                ", phosphorous=" + phosphorous +
+                ", calories=" + calories +
                 ", category='" + category + '\'' +
                 ", foodImage='" + foodImage + '\'' +
+                ", preference='" + preference + '\'' +
                 '}';
     }
 }

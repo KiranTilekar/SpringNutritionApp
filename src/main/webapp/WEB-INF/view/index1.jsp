@@ -115,8 +115,6 @@
 
         <jsp:include page="include/menu.jsp" />
 
-
-
         <main>
             <div class="content-container">
                 <h2>Welcome to Nutrition App</h2>

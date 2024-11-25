@@ -259,6 +259,15 @@
                                <f:input path="user.weight" id="weight" cssClass="form-control" type="number" step="0.01" min="0" required="required"/>
                            </div>
 
+                           <div class="form-group">
+                              <label for="preference">Meal Preference</label>
+                              <f:select path="user.preference" id="preference" cssClass="form-control" required="required">
+                                  <f:option value="">Select Meal Preference</f:option>
+                                  <f:option value="Veg">Veg</f:option>
+                                  <f:option value="Nonveg">Nonveg</f:option>
+                              </f:select>
+                          </div>
+
                            <button type="submit" class="register-button">Register</button>
                        </f:form>
                    </div>
