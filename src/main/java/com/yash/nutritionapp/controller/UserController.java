@@ -24,9 +24,6 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/index"})
     public String index(Model m) {
-        System.out.println("temp command loading...");
-        TempCommand cmd = new TempCommand();
-        m.addAttribute("command", cmd);
         return "index1"; // /WEB-INF/view/index.jsp
     }
 

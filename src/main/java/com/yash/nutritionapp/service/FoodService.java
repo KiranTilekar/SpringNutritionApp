@@ -3,6 +3,7 @@ package com.yash.nutritionapp.service;
 import com.yash.nutritionapp.domain.Food;
 import com.yash.nutritionapp.domain.Meal;
 
+import java.sql.Blob;
 import java.util.List;
 
 public interface FoodService {
@@ -28,4 +29,6 @@ public interface FoodService {
     Food getNutritionSummary(List<Food> recommendedMeal);
 
     void addFood(Food food);
+
+    public void updateImage(int foodId, Blob foodImage);
 }

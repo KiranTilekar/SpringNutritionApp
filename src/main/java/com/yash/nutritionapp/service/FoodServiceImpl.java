@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Blob;
 import java.util.*;
 
 @Service
@@ -155,6 +156,17 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
         super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
         Integer foodId = kh.getKey().intValue();
         f.setUserId(foodId);
+    }
+
+    @Override
+    public void updateImage(int foodId, Blob foodImage) {
+        System.out.println("inside update image");
+        String sql = "UPDATE `food` SET `foodImage` = :foodImage WHERE `foodId` = :foodId";
+        Map<String, Object> m = new HashMap<>();
+        m.put("foodImage", foodImage);
+        m.put("foodId", foodId);
+        getNamedParameterJdbcTemplate().update(sql, m);
+        System.out.println("image updated successfully");
     }
 
 
