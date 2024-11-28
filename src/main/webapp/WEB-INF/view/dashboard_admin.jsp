@@ -55,8 +55,6 @@
         <jsp:include page="include/menu.jsp"/>
         <div class="main-container">
 
-
-
             <table class="layout-table">
 
                 <tr>
@@ -64,8 +62,10 @@
                         <%-- Page Content Area--%>
                         <div class="admin-dashboard">
                             <h3>Admin Dashboard</h3>
-                            <c:if test="${param.act eq 'add'}">
-                                <div class="success-message">Food item added successfully!</div>
+                            <c:if test="${not empty param.ac and param.ac eq 'add'}">
+                                <div class="success">
+                                    <i class="fas fa-check-circle"></i> Food Added Successfully
+                                </div>
                             </c:if>
                         </div>
                     </td>

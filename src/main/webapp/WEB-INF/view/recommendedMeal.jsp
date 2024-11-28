@@ -34,10 +34,9 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
             margin-bottom: 20px;
+            margin-right: 20px;
         }
-        .meal-card:hover {
-            transform: scale(1.02);
-        }
+
         .meal-image {
             height: 250px;
             object-fit: cover;
@@ -172,7 +171,9 @@
             <c:forEach var="r" items="${recommendedMeal}">
                 <div class="col-md-6 mb-4">
                     <div class="meal-card">
-                        <img src="" alt="${r.name}" class="meal-image">
+                        <div class="image">
+                            <img src="displayFoodImage/${r.foodId}" alt="${r.name} Image" class="meal-image"/>
+                        </div>
                         <div class="meal-details">
                             <h3 class="text-center mb-3">${r.name}</h3>
                             <div class="nutrition-info">

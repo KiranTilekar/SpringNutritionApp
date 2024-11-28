@@ -31,4 +31,6 @@ public interface FoodService {
     void addFood(Food food);
 
     public void updateImage(int foodId, Blob foodImage);
+
+    public List<Food> viewAllFood();
 }

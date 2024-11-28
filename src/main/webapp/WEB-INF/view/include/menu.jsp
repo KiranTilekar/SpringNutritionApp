@@ -124,6 +124,7 @@
                     <li><a href="admin_dashboard"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="admin_users"></i>User List</a></li>
                     <li><a href="addFoodForm"></i>Add Food</a></li>
+                    <li><a href="viewAllFood"></i>View Food Items</a></li>
                     <li><a href="updateFoodForm"></i>Update Food</a></li>
                     <li><a href="logout"><i class="fas fa-right-from-bracket"></i>Logout</a></li>
                 </ul>

@@ -123,15 +123,11 @@
 
         <div class="meal-tiles">
             <c:forEach var="m" items="${mealList}">
-                <c:if test="${m.foodId == 1}"> <s:url var="imgUrl" value="/static/images/rice.jpg" /> </c:if>
-                <c:if test="${m.foodId == 2}"> <s:url var="imgUrl" value="/static/images/roti.jpg" /> </c:if>
-                <c:if test="${m.foodId == 3}"> <s:url var="imgUrl" value="/static/images/daal.jpg" /> </c:if>
-                <c:if test="${m.foodId == 4}"> <s:url var="imgUrl" value="/static/images/bhindi.webp" /> </c:if>
-                <c:if test="${m.foodId == 5}"> <s:url var="imgUrl" value="/static/images/chicken.JPG" /> </c:if>
+
 
                 <div class="food-tile">
                     <div class="food-image">
-                        <img src="${imgUrl}" alt="${m.name}">
+                            <img src="displayFoodImage/${m.foodId}" alt="${m.name} Image" class="food-image"/>
                     </div>
                     <div class="food-content">
                         <div class="food-name">${m.name}</div>

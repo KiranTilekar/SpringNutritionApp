@@ -56,6 +56,8 @@
             .page-content h3 {
                 color: #333;
                 margin-top: 0;
+                text-align: center;
+                font-size: 2em;
             }
 
             .user-list-table {
@@ -211,28 +213,26 @@
                                 <thead>
                                     <tr>
                                         <th>SR</th>
-                                        <th class="sortable" data-column="userId">USER ID<span class="sort-arrow"></span></th>
                                         <th class="sortable" data-column="name">NAME<span class="sort-arrow"></span></th>
                                         <th class="sortable" data-column="email">EMAIL<span class="sort-arrow"></span></th>
                                         <th class="sortable" data-column="loginName">USERNAME<span class="sort-arrow"></span></th>
                                         <th>HEIGHT</th>
                                         <th>WEIGHT</th>
                                         <th>BMI</th>
-                                        <th>ROLE</th>
+                                        <th>Preference</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach var="u" items="${userList}" varStatus="st">
                                         <tr>
                                             <td>${st.count}</td>
-                                            <td>${u.userId}</td>
                                             <td>${u.name}</td>
                                             <td>${u.email}</td>
                                             <td>${u.loginName}</td>
                                             <td>${u.height}</td>
                                             <td>${u.weight}</td>
                                             <td>${u.BMI}</td>
-                                            <td>${u.role}</td>
+                                            <td>${u.preference}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

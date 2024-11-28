@@ -208,6 +208,12 @@ public class FoodController {
         }
     }
 
+    @RequestMapping(value="/viewAllFood")
+    public String viewAllFood(Model m) {
+        m.addAttribute("viewAllFood", foodService.viewAllFood());
+        return "viewAllFood";
+    }
+
     @RequestMapping(value="/learnMore")
     public String getNutrient(@RequestParam("id") Integer id) {
 

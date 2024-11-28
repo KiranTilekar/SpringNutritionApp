@@ -122,42 +122,42 @@
         <f:form action="addFood" modelAttribute="command" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Food Name</label>
-                <f:input path="food.name" id="name" type="text" value="Salad" required="required" cssClass="form-control"/>
+                <f:input path="food.name" id="name" type="text" required="required" cssClass="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="carbohydrate">Carbohydrate (g)</label>
-                <f:input path="food.carbohydrate" id="carbohydrate" type="number" step="0.01" value="3.3" required="required" cssClass="form-control"/>
+                <f:input path="food.carbohydrate" id="carbohydrate" type="number" step="0.01" required="required" cssClass="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="protein">Protein (g)</label>
-                <f:input path="food.protein" id="protein" type="number" step="0.01" value="1.3" required="required" cssClass="form-control"/>
+                <f:input path="food.protein" id="protein" type="number" step="0.01" required="required" cssClass="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="fat">Fat (g)</label>
-                <f:input path="food.fat" id="fat" type="number" step="0.01" value="0.3" required="required" cssClass="form-control"/>
+                <f:input path="food.fat" id="fat" type="number" step="0.01" required="required" cssClass="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="iron">Iron (mg)</label>
-                <f:input path="food.iron" id="iron" type="number" step="0.01" value="0.2" required="required" cssClass="form-control"/>
+                <f:input path="food.iron" id="iron" type="number" step="0.01" required="required" cssClass="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="magnesium">Magnesium (mg)</label>
-                <f:input path="food.magnesium" id="magnesium" type="number" step="0.01" value="10" required="required" cssClass="form-control"/>
+                <f:input path="food.magnesium" id="magnesium" type="number" step="0.01" required="required" cssClass="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="phosphorous">Phosphorous (mg)</label>
-                <f:input path="food.phosphorous" id="phosphorous" type="number" step="0.01" value="8" required="required" cssClass="form-control"/>
+                <f:input path="food.phosphorous" id="phosphorous" type="number" step="0.01" required="required" cssClass="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="calories">Calories (kcal)</label>
-                <f:input path="food.calories" id="calories" type="number" step="0.01" value="19" required="required" cssClass="form-control"/>
+                <f:input path="food.calories" id="calories" type="number" step="0.01" required="required" cssClass="form-control"/>
             </div>
 
             <div class="form-group">

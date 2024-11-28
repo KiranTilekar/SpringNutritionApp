@@ -15,7 +15,7 @@
                 height: 100px;
             }
             .nutrient-info-container {
-                max-width: 800px;
+                max-width: 100%;
                 margin: 0 auto;
                 padding: 20px;
                 background-color: #ffffff;
@@ -65,6 +65,7 @@
                             <th>IRON</th>
                             <th>MAGNESIUM</th>
                             <th>PHOSPHOROUS</th>
+                            <th>MEASUREMENT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,6 +77,7 @@
                             <td>${foodById.iron}</td>
                             <td>${foodById.magnesium}</td>
                             <td>${foodById.phosphorous}</td>
+                            <td>${foodById.measurement}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -22,14 +22,8 @@ public class Food {
     private Integer calories;
     private String category;
     private String preference;
-
-//    @Column(name="foodImage")
-//    @Basic(fetch= FetchType.LAZY)
-//
-//    @Lob
-//    private byte[] foodImage;
-
     private Blob foodImage;
+    private String measurement;
 
     public Food() {
     }
@@ -132,15 +126,6 @@ public class Food {
         this.category = category;
     }
 
-//    public byte[] getFoodImage() {
-//        return foodImage;
-//    }
-//
-//    public void setFoodImage(byte[] foodImage) {
-//        this.foodImage = foodImage;
-//    }
-
-
     public Blob getFoodImage() {
         return foodImage;
     }
@@ -157,6 +142,14 @@ public class Food {
         this.preference = preference;
     }
 
+    public String getMeasurement() {
+        return measurement;
+    }
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
+    }
+
     @Override
     public String toString() {
         return "Food{" +
@@ -171,8 +164,9 @@ public class Food {
                 ", phosphorous=" + phosphorous +
                 ", calories=" + calories +
                 ", category='" + category + '\'' +
-                ", foodImage='" + foodImage + '\'' +
                 ", preference='" + preference + '\'' +
+                ", foodImage=" + foodImage +
+                ", measurement='" + measurement + '\'' +
                 '}';
     }
 }

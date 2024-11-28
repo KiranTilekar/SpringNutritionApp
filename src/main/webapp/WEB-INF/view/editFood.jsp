@@ -129,8 +129,6 @@
             </div>
             <button type="submit" class="submit-button">Add Food Item</button>
         </f:form>
-
-        <a href="viewImages" class="view-link">View All Food Items</a>
     </div>
     <jsp:include page="include/footer.jsp" />
 </body>

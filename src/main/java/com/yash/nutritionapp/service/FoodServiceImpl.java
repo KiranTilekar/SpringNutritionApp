@@ -169,5 +169,12 @@ public class FoodServiceImpl extends BaseDAO implements FoodService {
         System.out.println("image updated successfully");
     }
 
+    @Override
+    public List<Food> viewAllFood() {
+        String sql = "SELECT * from Food";
+        List<Food> foods = getJdbcTemplate().query(sql, new FoodRowMapper());
+        return foods;
+    }
+
 
 }
